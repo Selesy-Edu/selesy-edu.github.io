@@ -19,7 +19,7 @@ ReactDOM.render(
       <Provider store={createStore(reducers)}>
         <BrowserRouter>
           <Switch>
-            <Route path ="/selecu" component={App} exact />
+            <Route path ="/" component={App} exact />
           </Switch>
         </BrowserRouter>
       </Provider>

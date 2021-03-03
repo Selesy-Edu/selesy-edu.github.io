@@ -49,7 +49,7 @@ const Auth = (props) => {
   }
 
   useEffect(() => {
-    if(user.hasEmitted){
+    if(user.data != null){
       setLogged(true);
     }
     if(!logged){

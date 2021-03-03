@@ -12,7 +12,7 @@ const SignOut = (props) => {
     await firebase.auth().signOut().then(
       () => {
         props.loginFirstStage(false);
-        window.open("http://localhost:3000/selecu","_self");
+        window.open("http://www.selecu.net","_self");
       }
     );
   }

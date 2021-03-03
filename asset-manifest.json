@@ -1,0 +1,43 @@
+{
+  "files": {
+    "analytics.js": "/static/js/analytics.4edf7248.chunk.js",
+    "analytics.js.map": "/static/js/analytics.4edf7248.chunk.js.map",
+    "database.js": "/static/js/database.a96d76b2.chunk.js",
+    "database.js.map": "/static/js/database.a96d76b2.chunk.js.map",
+    "firestore.js": "/static/js/firestore.310504b8.chunk.js",
+    "firestore.js.map": "/static/js/firestore.310504b8.chunk.js.map",
+    "functions.js": "/static/js/functions.a9c0c116.chunk.js",
+    "functions.js.map": "/static/js/functions.a9c0c116.chunk.js.map",
+    "main.css": "/static/css/main.f818001a.chunk.css",
+    "main.js": "/static/js/main.d0c6928f.chunk.js",
+    "main.js.map": "/static/js/main.d0c6928f.chunk.js.map",
+    "messaging.js": "/static/js/messaging.f5980eb6.chunk.js",
+    "messaging.js.map": "/static/js/messaging.f5980eb6.chunk.js.map",
+    "performance.js": "/static/js/performance.3cae57d1.chunk.js",
+    "performance.js.map": "/static/js/performance.3cae57d1.chunk.js.map",
+    "remoteConfig.js": "/static/js/remoteConfig.277c3ebf.chunk.js",
+    "remoteConfig.js.map": "/static/js/remoteConfig.277c3ebf.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.10cd96a3.js",
+    "runtime-main.js.map": "/static/js/runtime-main.10cd96a3.js.map",
+    "storage.js": "/static/js/storage.9c537197.chunk.js",
+    "storage.js.map": "/static/js/storage.9c537197.chunk.js.map",
+    "static/js/10.6ab57e33.chunk.js": "/static/js/10.6ab57e33.chunk.js",
+    "static/js/10.6ab57e33.chunk.js.map": "/static/js/10.6ab57e33.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.f818001a.chunk.css.map": "/static/css/main.f818001a.chunk.css.map",
+    "static/js/10.6ab57e33.chunk.js.LICENSE.txt": "/static/js/10.6ab57e33.chunk.js.LICENSE.txt",
+    "static/media/Background.9b7e5f4c.png": "/static/media/Background.9b7e5f4c.png",
+    "static/media/app.css": "/static/media/DINNextLTPro-Medium.b5aa4088.ttf",
+    "static/media/Trazado.419a4305.png": "/static/media/Trazado.419a4305.png",
+    "static/media/avatar.674cef7f.jpg": "/static/media/avatar.674cef7f.jpg",
+    "static/media/brick.92f6dbc2.m4a": "/static/media/brick.92f6dbc2.m4a",
+    "static/media/tableroBack.39a02af6.png": "/static/media/tableroBack.39a02af6.png",
+    "static/media/world.42bf7f54.png": "/static/media/world.42bf7f54.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.10cd96a3.js",
+    "static/js/10.6ab57e33.chunk.js",
+    "static/css/main.f818001a.chunk.css",
+    "static/js/main.d0c6928f.chunk.js"
+  ]
+}

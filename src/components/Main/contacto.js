@@ -9,7 +9,6 @@ const Contacto = () => {
   return (
     <React.Fragment>
       <div className="fluid-container">
-        <NavBar />
       </div>
         <div className="container">
           <div class="card margin-top overflow translate-top" style={{width: "20rem;"}}>

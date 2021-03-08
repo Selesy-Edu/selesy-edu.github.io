@@ -6,11 +6,12 @@ import symbol from '../../assets/images/symbol.png'
 import selecu from '../../assets/images/Selecu.png'
 
 
-const NavBar = () => {
+const NavBar = (props) => {
   const [menu, setMenu] = useState(true);
 
-  const toggleMenu = () => {
-    setMenu(!menu);
+  const show = (val) => {
+    setMenu(val);
+    props.navCallback(val);
   }
 
   return (
@@ -18,21 +19,23 @@ const NavBar = () => {
         <nav className="navbar navbar-expand-sm navbar-dark z-top">
           <div className="container-fluid">
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navi-list navbar-nav me-auto mb-2 mb-lg-0 bg-dark">
-                  <li className="nav-items item-1 nav-item"><a href="https://www.selecu.net"><img src={selecu} alt="..." /></a> </li>
-                  <li className="nav-items item-rest">
-                    <a href="/sobrenosotros" className="nav-items">SOBRE NOSOTROS</a>
+                <ul className="navi-list navbar-nav me-auto mb-2 mb-lg-2 bg-dark">
+                  <li className="nav-items item-1 nav-item" onClick={e => show(0)}>
+                    <img src={selecu} alt="..." />
                   </li>
-                  <li className="nav-items item-rest">
-                    <a href="/nuestrafilosofia" className="nav-items">NUESTRA FILOSOFÍA</a>
+                  <li className="nav-items item-rest" onClick={e => show(1)}>
+                    SOBRE NOSOTROS
                   </li>
-                  <li className="nav-items item-rest">
-                      <a href="#" className="nav-items">COMUNIDAD</a>
+                  <li className="nav-items item-rest" onClick={e => show(2)}>
+                    NUESTRA FILOSOFÍA
                   </li>
-                  <li className="nav-items item-rest">
-                    <a href="/contacto" className="nav-items">CONTACTO</a>
+                  <li className="nav-items item-rest" onClick={e => show(3)}>
+                    COMUNIDAD
                   </li>
-                  <li className="nav-items item-7">
+                  <li className="nav-items item-rest" onClick={e => show(4)}>
+                    CONTACTO
+                  </li>
+                  <li className="nav-item item-7">
                     <img width="20rem" src={symbol} alt="..." />
                   </li>
                 </ul>

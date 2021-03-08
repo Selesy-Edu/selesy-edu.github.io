@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 
 import HomePuzzle from '../animations/HomePuzzle'
 import NavBar from './Main/navbar.js'
+import SobreNosotros from'./Main/sobrenosotros.js'
+import NuestraFilosofia from'./Main/nuestrafilosofia.js'
+import Contacto from'./Main/contacto.js'
+import Comunidad from'./Main/comunidad.js'
 
 import '../styles/landing.css'
 
@@ -11,35 +15,56 @@ import tablero from '../assets/images/tableroBack.png'
 import symbol from '../assets/images/symbol.png'
 import selecu from '../assets/images/Selecu.png'
 
+const MenuRender = (props) => {
+  switch (props.onMenu){
+    case 0:
+      return(
+        <React.Fragment>
+          <img className="symbol-background z-top" src={symbol} alt="..." />
+          <main>
+            <div id="defaultP5" className="container index-container img-fluid">
+              <img className="tablero-background img-fluid" src={tablero} alt="..." />
+              <h1 id="slogan"><p>CULTURE<br /> SELF LEARNING</p></h1>
+              <HomePuzzle
+              />
+            </div>
+          </main>
+          <footer >
+            <div className="container index-container img-fluid">
+              <img className="index-background" src={background} alt="..." />
+              <div className="index-footer">
+                <img className="img-fluid" src={footer} alt="..."/>
+              </div>
+            </div>
+          </footer>
+        </React.Fragment>
+      );
+    case 1:
+      return <SobreNosotros />;
+    case 2:
+      return <NuestraFilosofia />;
+    case 3:
+      return <Comunidad />;
+    case 4:
+      return <Contacto />;
+    }
+}
 
 const Landing = () => {
-  const [menu, setMenu] = useState(true);
+  const [menu, setMenu] = useState(0);
 
-  const toggleMenu = () => {
-    setMenu(!menu);
+  const toggleMenu = (val) => {
+    setMenu(val);
   }
 
   return (
       <React.Fragment>
-        <NavBar />
-        <img className="symbol-background z-top" src={symbol} alt="..." />
-        <main>
-          <div id="defaultP5" className="container index-container img-fluid">
-            <img className="tablero-background img-fluid" src={tablero} alt="..." />
-            <h1 id="slogan"><p>CULTURE<br /> SELF LEARNING</p></h1>
-            <HomePuzzle
-              onMenu={menu}
-            />
-          </div>
-        </main>
-        <footer >
-          <div className="container index-container img-fluid">
-            <img className="index-background" src={background} alt="..." />
-            <div className="index-footer">
-              <img className="img-fluid" src={footer} alt="..."/>
-            </div>
-          </div>
-        </footer>
+        <NavBar
+          navCallback={toggleMenu}
+         />
+         <MenuRender
+            onMenu={menu}
+         />
       </React.Fragment>
   );
 }

@@ -13,10 +13,9 @@ const NuestraFilosofia = () => {
   return (
     <React.Fragment>
       <div className="fluid-container">
-        <NavBar />
       </div>
         <div className="container">
-          <div class="card margin-top overflow" style={{width: "14rem;"}}>
+          <div class="card margin-top overflow translate-top" style={{width: "14rem;"}}>
             <div class="card-body">
               <h5 class="card-title">Nuestros principios de creación de aprendizaje.</h5>
               <p class="card-text">

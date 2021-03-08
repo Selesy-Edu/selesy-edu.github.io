@@ -66,7 +66,7 @@
 
 .navi-list{
   list-style: none;
-  height: 2rem;
+  height: 2.5rem;
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -89,6 +89,7 @@
 .nav-items:hover{
   text-decoration: none;
   color: rgb(255,125,0);
+  cursor: pointer;
 }
 
 .z-top{

@@ -13,7 +13,6 @@ const SobreNosotros = () => {
   return (
     <React.Fragment>
       <div className="fluid-container">
-        <NavBar />
       </div>
         <div className="container">
           <div class="card margin-top overflow" style={{width: "20rem;"}}>

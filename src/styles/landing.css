@@ -84,8 +84,10 @@
   font-family: "DINNextLTPro";
   color: rgb(200,200,200);
   align-self: center;
+
 }
 .nav-items:hover{
+  text-decoration: none;
   color: rgb(255,125,0);
 }
 

@@ -2,6 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import Home from './components/home'
+
+import SobreNosotros from'./components/Main/sobrenosotros.js'
+import NuestraFilosofia from'./components/Main/nuestrafilosofia.js'
+import Contacto from'./components/Main/contacto.js'
+
 import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom"
 
 import {Provider} from 'react-redux'
@@ -20,6 +25,9 @@ ReactDOM.render(
         <BrowserRouter>
           <Switch>
             <Route path ="/" component={App} exact />
+            <Route path ="/sobrenosotros" component={SobreNosotros} exact />
+            <Route path ="/nuestrafilosofia" component={NuestraFilosofia} exact />
+            <Route path ="/contacto" component={Contacto} exact />
           </Switch>
         </BrowserRouter>
       </Provider>

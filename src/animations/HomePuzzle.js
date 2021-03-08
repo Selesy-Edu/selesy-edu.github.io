@@ -125,9 +125,11 @@ class HomePuzzle extends React.Component {
         cnv = sketch.createCanvas(width,height);
         cnv.id('p5');
         cnv.parent("defaultP5");
+        // cnv.position(windowWidth * 0.53-width, sketch.windowHeight * 0.46-height);
       };
 
       sketch.draw = () => {
+        cnv.class(`canvas-${this.props.onMenu}`);
         for (let i = 0; i < this.state.passKeys.length; i++){
           checkCode(this.state.passKeys[i],i);
         }
@@ -209,7 +211,7 @@ class HomePuzzle extends React.Component {
         windowWidth = sketch.windowWidth;
         stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize;
         if(windowWidth < 1000){
-          stepSize *= 1.5;
+          stepSize *= 1.8;
         }
         width = stepSize*wCells;
         height = stepSize*hCells;
@@ -432,7 +434,7 @@ class HomePuzzle extends React.Component {
   }
   render(){
     return(
-      <div className="col" id='defaultP5'>
+      <div>
       </div>
     );
   }

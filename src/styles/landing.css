@@ -1,3 +1,4 @@
+
 .index-footer {
   display: block;
   position: absolute;
@@ -33,9 +34,10 @@
 
 #p5 {
   position: absolute;
-  top: 40%;
+  top: 43%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-60%);
+  width: 67%;
   animation-name: fadeIn;
   animation-duration: 2s;
 }
@@ -81,6 +83,14 @@
   align-items: center;
   font-family: "DINNextLTPro";
   color: rgb(200,200,200);
+  align-self: center;
+}
+.nav-items:hover{
+  color: rgb(255,125,0);
+}
+
+.z-top{
+  z-index: 2000;
 }
 
 .item-1{
@@ -93,6 +103,10 @@
 .item-rest{
   flex-grow: 2;
   justify-content: center;
+}
+
+.item-rest:hover{
+  color: rgb(255,125,0);
 }
 
 .item-7{
@@ -116,6 +130,10 @@
   transform: translate(-50%,-50%);
 }
 
+.canvas-false{
+  display:none;
+}
+
 #slogan {
   writing-mode: vertical-rl;
   text-orientation: upright;
@@ -136,14 +154,13 @@
   .symbol-background{
     position: absolute;
     top: 10%;
-    left: 10%;
+    right: 10%;
     width: 1.5rem;
   }
   .tablero-background {
     position: absolute;
     top: 43%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    width: 100%;
+    width: 200%;
   }
 }

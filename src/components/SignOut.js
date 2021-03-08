@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Landing from './landing'
 import 'firebase/auth'
 import { useFirebaseApp} from 'reactfire'
 import {connect} from 'react-redux'
@@ -12,7 +13,9 @@ const SignOut = (props) => {
     await firebase.auth().signOut().then(
       () => {
         props.loginFirstStage(false);
-        window.open("http://www.selecu.net","_self");
+        props.loadUserData({});
+        return <Landing />;
+        // window.open("http://www.selecu.net","_self");
       }
     );
   }

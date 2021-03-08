@@ -16,9 +16,15 @@ const Auth = (props) => {
   const [newUser, setNewUser] = useState('')
   const [userData, setUserData] = useState({})
   const [logged, setLogged] = useState(false);
+  const [fullName, setFullName] = useState('');
+  const [emailParents, setEmailParents] = useState('');
+  const [institution, setInstitution] = useState('');
+  const [year, setYear] = useState('');
 
   const firebase = useFirebaseApp();
   const user = useUser();
+  const db = firebase.database();
+
 
   const login = async () => {
     await firebase.auth().signInWithEmailAndPassword(email,password).then(
@@ -70,11 +76,11 @@ const Auth = (props) => {
   if(logged){
     return <Home />;
   }
-  if(!props.admin && !logged){
+  if(props.roll != 'Gestores' && !logged && user.data === null){
     return (
       <div className="card selectCard" style={{width: "25rem"}}>
         <div className="card-body">
-          <h6 className="card-title text-spaced-2">{props.roll}</h6>
+          <h6 className="card-title text-spaced-2">{`Resolviste el acertijo de: ${props.roll}`}</h6>
           <div style={{display:"block"}}>
             <label className="text-spaced-3">Email</label>
             <input type="email" id="email" className="input-card" onChange={(e) => setEmail(e.target.value)} />
@@ -94,28 +100,44 @@ const Auth = (props) => {
       </div>
     )
   }
-  if(props.admin){
-    return (
-      <div className="card selectCard" style={{width: "25rem"}}>
-        <div className="card-body">
-          <h5 className="card-title">ADMIN</h5>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-3">Email</label>
-            <input type="email" id="email" className="input-card" onChange={(e) => setEmail(e.target.value)} />
-            <p><strong>{newUser}</strong></p>
+  if(props.roll === 'Gestores' && !logged){
+    // Init database registry
+    const ref = db.ref(user.data.uid + '/registry/').set({
+      name: fullName,
+      emailParents: emailParents,
+      institution: institution,
+      year: year
+    });
+    const infoInit = db.ref(user.data.uid + '/info/').set({
+      nick: '',
+      color: '',
+      animal: '',
+      hourPreference: '',
+      dayPreference: ''
+    });
+    if(user.data === null){
+      return (
+        <div className="card selectCard" style={{width: "25rem"}}>
+          <div className="card-body">
+            <h5 className="card-title">ADMIN</h5>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-3">Email</label>
+              <input type="email" id="email" className="input-card" onChange={(e) => setEmail(e.target.value)} />
+              <p><strong>{newUser}</strong></p>
+            </div>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-1">Password</label>
+              <input type="password" className="input-card" onChange={(e) => setPassword(e.target.value)}/>
+            </div>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-3">Repeat password</label>
+              <input type="password" className="input-card" onChange={(e) => setPasswordVal(e.target.value)}/>
+            </div>
+            <button id="auth-button" onClick={createUser} className="buttonSubmit">create user</button>
           </div>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-1">Password</label>
-            <input type="password" className="input-card" onChange={(e) => setPassword(e.target.value)}/>
-          </div>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-3">Repeat password</label>
-            <input type="password" className="input-card" onChange={(e) => setPasswordVal(e.target.value)}/>
-          </div>
-          <button id="auth-button" onClick={createUser} className="buttonSubmit">create user</button>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

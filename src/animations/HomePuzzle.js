@@ -26,11 +26,26 @@ let s = undefined;
 class HomePuzzle extends React.Component {
 
   state = {
-    passKeys: [[0,1,2,3],[3,2,1,0]],
+    passKeys: [
+      [3,2,1,0], //Gestores
+      [4,3,1,2], //Mentores
+      [0,1,2,3]  //tercero
+    ]
   };
 
   introPassed = () => {
     this.props.loginFirstStage(true);
+  }
+
+ shuffle = (toShuffle) => {
+     let toReturn = [];
+     let size = toShuffle.length;
+     for(let i = 0; i < size; i++){
+       let c = Math.floor(Math.random() * toShuffle.length);
+       toReturn.push(toShuffle[c]);
+       toShuffle.splice(c,1);
+     }
+     return toReturn;
   }
 
   componentDidMount(){
@@ -65,7 +80,8 @@ class HomePuzzle extends React.Component {
           positionGrid.push([j,i]);
         }
       }
-      let hotspots = [1,2,3,4];
+      let hotspotsShuffle = this.shuffle([1,3,5,9,11,13]);
+      let hotspots = hotspotsShuffle.splice(0,4);
 
       let wallsGrid = [[0,0],[0,0],[0,0],[0,0],[1,0],[0,0],[0,0],[0,0],[0,0],[1,0],[0,0],[0,0],[0,0],[0,0],[1,0],[1,0],[1,0],[1,1],[0,0],[0,0],[1,1],[1,0],[1,0],[0,1],[1,0],[0,0],[0,1],[0,1],[1,0],[1,0], [1,0],[0,1],[0,0],[1,1],[0,1],[1,0],[1,1],[1,0],[0,0],[0,0],[1,1],[0,0],[0,1],[0,0],[1,0], [0,0],[1,1],[1,1],[1,0],[1,0],[0,0],[0,1],[1,1],[1,1],[0,0],[1,1],[0,1],[1,1],[1,1],[1,1], [0,0],[0,1],[0,0],[1,1],[1,0],[0,1],[0,1],[0,0],[1,0],[0,1],[0,1],[0,0],[0,1],[0,1],[1,0], [1,0],[0,0],[1,0],[0,1],[1,0],[0,0],[0,1],[1,0],[0,1],[1,0],[1,0],[1,1],[1,0],[1,0],[1,0], [1,1],[1,1],[0,1],[0,0],[0,1],[1,0],[1,0],[1,0],[0,0],[1,1],[1,0],[0,0],[0,0],[0,1],[1,1], [0,0],[0,1],[1,1],[1,1],[0,1],[1,0],[1,0],[1,0],[1,0],[1,0],[1,0],[1,0],[0,0],[0,0],[1,0], [1,0],[0,0],[0,1],[0,1],[1,1],[1,0],[1,0],[0,1],[0,1],[0,1],[1,0],[1,0],[1,1],[1,1],[1,0], [0,0],[0,0],[0,0],[0,0],[0,0],[1,0],[0,0],[0,0],[0,0],[0,0],[1,0],[0,0],[0,0],[1,0],[1,0]];
       //Pseudorandom maze
@@ -73,7 +89,7 @@ class HomePuzzle extends React.Component {
         wallsGrid.push([Math.floor(Math.random()*2),Math.floor(Math.random()*2)]);
       }*/
 
-      let currentPos = [0,2,4,6,8,10,12,14];
+      let currentPos = this.shuffle([0,2,4,6,8,10,12,14]);
       // let colors = [{red: 255, green:0, blue:0},{red: 0, green:255, blue:0},{red: 0, green:0, blue:255},{red: 255, green:255, blue:0},{red: 255, green:0, blue:0},{red: 0, green:255, blue:0},{red: 0, green:0, blue:255},{red: 255, green:255, blue:0}]
 
       sketch.preload = () => {
@@ -96,34 +112,12 @@ class HomePuzzle extends React.Component {
         pngHotspots.push(sketch.loadImage(fuego));
         pngHotspots.push(sketch.loadImage(tierra));
 
-        var count = 0;
-        while(count <= keys){
-          for(let i = 0; i < keys; i++){
-            let r = Math.floor(Math.random()*positionGrid.length);
-            if(r === 7){
-              break;
-            }
-            // hotspots.push(r);
-            count++;
-            if(i === 0){
-              hotspots[0] = r;
-            } else {
-              var c = 0;
-              for(let j = 0; j < i; j++){
-                if(r === hotspots[j]){
-                  c++;
-                }
-              }
-              if(c === 0){
-                hotspots[i] = r;
-                count++;
-              }
-            }
-          }
-        }
       }
 
       sketch.setup = () => {
+        hotspotsShuffle = this.shuffle([1,3,5,9,11,13]);
+        hotspots = hotspotsShuffle.splice(0,4);
+        console.log(hotspots);
         windowWidth = sketch.windowWidth;
         stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize;
         width = stepSize*wCells;
@@ -214,6 +208,9 @@ class HomePuzzle extends React.Component {
       sketch.windowResized = () => {
         windowWidth = sketch.windowWidth;
         stepSize = windowWidth/sizeConst < maxStepSize ? windowWidth/sizeConst : maxStepSize;
+        if(windowWidth < 1000){
+          stepSize *= 1.5;
+        }
         width = stepSize*wCells;
         height = stepSize*hCells;
         sketch.resizeCanvas(width,height);

@@ -78,16 +78,16 @@
   padding-top: 0.4rem;
   padding-bottom: 0.5rem;
   display: inline;
-  background: rgba(40, 40, 40, 0.3);
-  background: rgb(10, 10, 10);
+  align-items: center;
   font-family: "DINNextLTPro";
   color: rgb(200,200,200);
 }
 
 .item-1{
   flex-grow: 4;
-  justify-content: center;
+  align-self: center;
   padding-left: 6rem;
+
 }
 
 .item-rest{
@@ -97,7 +97,7 @@
 
 .item-7{
   flex-grow: 4;
-  justify-content: center;
+  align-self: center;
 }
 
 
@@ -130,13 +130,20 @@
 @media only screen and (max-width: 1000px) {
   #slogan {
     font-size: 0.55rem;
-    right: 27%;
-    top:32%;
+    right: 16%;
+    top:24%;
   }
-}
-@media only screen and (max-width: 600px) {
-  #slogan {
-    top:40%;
-    font-size: 0.4rem;
+  .symbol-background{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 1.5rem;
+  }
+  .tablero-background {
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
   }
 }

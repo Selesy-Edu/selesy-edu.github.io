@@ -18,34 +18,41 @@ const Profile = (props) => {
   const user = useUser();
   const db = firebase.database();
 
+  const updateFirebase = (entry, value) => {
+    let obj = {};
+    obj[entry] = value;
+    const ref = db.ref(user.data.uid + 'se/info/').update(
+      obj
+    );
+  }
+
   const writeInfo = () => {
-      db.ref(user.data.uid + '/info/').set({
-        nick: nickname,
-        name: username,
-        color:favoriteColor,
-        animal:favoriteAnimal,
-        dayPreference : favoriteDay,
-        hourPreference: favoriteHour
-      });
+    updateFirebase('nick',nickname);
+    updateFirebase('color',favoriteColor);
+    updateFirebase('animal',favoriteAnimal);
+    updateFirebase('dayPreference',favoriteDay);
+    updateFirebase('hourPreference',favoriteHour);
   }
 
   useEffect(()=>{
-    const ref = db.ref().child(user.data.uid).child('info');
-    ref.on(
+    db.ref().child(user.data.uid).on(
       'value',(snapshot) => {
         let snap = snapshot.val();
-        console.log(snap);
-        setUserName(snap.name);
-        setNickName(snap.nick);
-        setFavoriteColor(snap.color);
-        setFavoriteDay(snap.dayPreference);
-        setFavoriteAnimal(snap.animal);
-        setParentsEmail(snap.emailParents);
-        setSchool(snap.institution);
-        setLevel(snap.year);
+        let info = snap.info;
+        let registry = snap.registry;
+
+        setNickName(info.nick);
+        setFavoriteColor(info.color);
+        setFavoriteDay(info.dayPreference);
+        setFavoriteAnimal(info.animal);
+        setUserName(registry.name);
+        setParentsEmail(registry.emailParents);
+        setSchool(registry.institution);
+        setLevel(registry.year);
       }
     );
   },[]);
+
 
   return(
     <div className="card selectCard profileCard" style={{width: "30rem"}}>

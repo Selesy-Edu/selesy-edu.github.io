@@ -21,16 +21,16 @@ const NavBar = () => {
                 <ul className="navi-list navbar-nav me-auto mb-2 mb-lg-0 bg-dark">
                   <li className="nav-items item-1 nav-item"><a href="https://www.selecu.net"><img src={selecu} alt="..." /></a> </li>
                   <li className="nav-items item-rest">
-                    <a href="https://www.selecu.net/sobrenosotros" className="nav-items">SOBRE NOSOTROS</a>
+                    <a href="/sobrenosotros" className="nav-items">SOBRE NOSOTROS</a>
                   </li>
                   <li className="nav-items item-rest">
-                    <a href="https://www.selecu.net/nuestrafilosofia" className="nav-items">NUESTRA FILOSOFÍA</a>
+                    <a href="/nuestrafilosofia" className="nav-items">NUESTRA FILOSOFÍA</a>
                   </li>
                   <li className="nav-items item-rest">
                       <a href="#" className="nav-items">COMUNIDAD</a>
                   </li>
                   <li className="nav-items item-rest">
-                    <a href="https://www.selecu.net/contacto" className="nav-items">CONTACTO</a>
+                    <a href="/contacto" className="nav-items">CONTACTO</a>
                   </li>
                   <li className="nav-items item-7">
                     <img width="20rem" src={symbol} alt="..." />

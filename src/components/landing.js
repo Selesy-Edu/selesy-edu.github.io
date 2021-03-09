@@ -16,6 +16,7 @@ import symbol from '../assets/images/symbol.png'
 import selecu from '../assets/images/Selecu.png'
 
 const MenuRender = (props) => {
+
   switch (props.onMenu){
     case 0:
       return(

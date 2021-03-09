@@ -12,6 +12,8 @@ const SignOut = (props) => {
   const signOutFB = async () =>{
     await firebase.auth().signOut().then(
       () => {
+        sessionStorage.clear();
+        localStorage.clear();
         props.loginFirstStage(false);
         props.loadUserData({});
         props.userRollPass(null);

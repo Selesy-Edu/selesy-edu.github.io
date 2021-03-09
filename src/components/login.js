@@ -6,7 +6,6 @@ import App from '../App'
 
 import {loginFirstStage} from '../actions'
 
-
 // 0 - Gestores
 // 1 - Mentores
 //  Aprendices
@@ -37,13 +36,10 @@ const Login = (props) => {
     return (
       <div>
         <Auth
-          roll={`Login - Resolviste el acertijo de: ${grades[props.userRoll]}`}
-          admin={false}
+          roll={grades[props.userRoll]}
          />
       </div>
     );
-  // }
-  //
 }
 
 const mapStateToProps = (state) => {

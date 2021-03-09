@@ -2,8 +2,9 @@ import React, {useEffect , useState}  from 'react';
 import Landing from './components/landing'
 import Login from './components/login'
 import Home from './components/home'
-import { useUser } from 'reactfire'
 import firebase from 'firebase'
+import { useFirebaseApp, useUser } from 'reactfire'
+import 'firebase/auth'
 
 import {connect} from 'react-redux'
 import {loadUserData,loginFirstStage} from './actions'
@@ -11,6 +12,7 @@ import {loadUserData,loginFirstStage} from './actions'
 import './styles/app.css'
 
 const App = (props) => {
+
   const [logged, setLogged] = useState(false);
   const [name, setName] = useState('');
 

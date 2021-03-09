@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import React,  {useState} from 'react'
 import { Redirect } from "react-router-dom"
 import MainScreen from '../animations/MainScreen'
 import Profile from './Profile'

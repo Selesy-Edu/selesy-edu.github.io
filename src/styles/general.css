@@ -25,3 +25,10 @@
   position: absolute;
   right: 1.5rem;
 }
+
+#togglePassword{
+  display: inline;
+  width: 1.5rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}

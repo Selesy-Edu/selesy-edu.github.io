@@ -9,8 +9,6 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import reducers from './reducers'
 
-import {IfFirebaseAuthed} from "@react-firebase/auth";
-
 import config from './config/configDB'
 import { FirebaseAppProvider,useUser } from 'reactfire'
 
@@ -29,9 +27,3 @@ ReactDOM.render(
 
   document.getElementById('root')
 );
-
-
-// <IfFirebaseAuthed>{console.log("in")}
-//   <Route path ="/home" component={Home} exact />
-//   <Redirect to="/home" />
-// </ IfFirebaseAuthed>

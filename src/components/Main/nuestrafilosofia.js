@@ -15,10 +15,10 @@ const NuestraFilosofia = () => {
       <div className="fluid-container">
       </div>
         <div className="container">
-          <div class="card margin-top overflow translate-top" style={{width: "14rem;"}}>
-            <div class="card-body">
-              <h5 class="card-title">Nuestros principios de creación de aprendizaje.</h5>
-              <p class="card-text">
+          <div className="card margin-top overflow translate-top" style={{width: "60%"}}>
+            <div className="card-body">
+              <h5 className="card-title">Nuestros principios de creación de aprendizaje.</h5>
+              <p className="card-text">
                 Estos son la base que determina cómo concebimos el concepto de aprendizaje, qué nos importa y cómo generamos experiencias de aprendizaje.
                 <ul>
                   <li>Aprendizaje basado en proyectos</li>

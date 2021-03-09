@@ -21,7 +21,7 @@ const Profile = (props) => {
   const updateFirebase = (entry, value) => {
     let obj = {};
     obj[entry] = value;
-    const ref = db.ref(user.data.uid + 'se/info/').update(
+    const ref = db.ref(user.data.uid + '/info/').update(
       obj
     );
   }
@@ -61,8 +61,6 @@ const Profile = (props) => {
         <hr />
         <div className="text-spaced-6">
           <p className="card-text">Actualiza tu datos</p>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Marie_Curie_c1920.jpg" className="img-profile"/>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Hombre_Palito.png" className="img-myself"/>
         </div>
         <form>
           <div style={{display:"block"}}>
@@ -97,10 +95,6 @@ const Profile = (props) => {
             <label className="text-spaced-1">Color que más me gusta</label>
             <input type="text" className="input-card"  value={favoriteColor} required onChange={e => setFavoriteColor(e.target.value)}/>
           </div>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-3">Momento  preferido del día</label>
-            <input type="time" className="input-card" value={favoriteHour} required onChange={e => setFavoriteHour(e.target.value)}/>
-          </div>
         </form>
         <button  className="buttonSubmit" onClick={writeInfo}>¡Actualizate!</button>
         <button  className="buttonSubmit" onClick={()=>props.onReturnToMap(false)}>Regresar al mapa</button>
@@ -111,3 +105,8 @@ const Profile = (props) => {
 }
 
 export default Profile;
+
+// <div style={{display:"block"}}>
+//   <label className="text-spaced-3">Momento  preferido del día</label>
+//   <input type="time" className="input-card" value={favoriteHour} required onChange={e => setFavoriteHour(e.target.value)}/>
+// </div>

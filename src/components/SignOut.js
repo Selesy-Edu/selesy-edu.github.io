@@ -4,7 +4,7 @@ import 'firebase/auth'
 import { useFirebaseApp} from 'reactfire'
 import {connect} from 'react-redux'
 
-import {loadUserData,loginFirstStage} from '../actions'
+import {loadUserData,loginFirstStage, userRollPass} from '../actions'
 
 const SignOut = (props) => {
   const firebase = useFirebaseApp();
@@ -14,19 +14,18 @@ const SignOut = (props) => {
       () => {
         props.loginFirstStage(false);
         props.loadUserData({});
-        return <Landing />;
-        // window.open("http://www.selecu.net","_self");
+        props.userRollPass(null);
       }
     );
   }
-  return (
-    <button
-      id="signout-button"
-      onClick={signOutFB}
-      className="buttonSubmit"
-      >sign out
-    </button>
-  );
+    return (
+      <button
+        id="signout-button"
+        onClick={signOutFB}
+        className="buttonSubmit"
+        >sign out
+      </button>
+    );
 }
 
 const mapStateToProps = (state) => {
@@ -36,4 +35,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps,{loadUserData,loginFirstStage})(SignOut);
+export default connect(mapStateToProps,{loadUserData,loginFirstStage, userRollPass})(SignOut);

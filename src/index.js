@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Home from './components/home'
 
-import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom"
+import { BrowserRouter, Switch, Route  } from "react-router-dom"
 
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'

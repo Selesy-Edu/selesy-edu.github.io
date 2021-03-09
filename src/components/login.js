@@ -1,7 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux'
 
 import Auth from './Auth'
+import App from '../App'
+
+import {loginFirstStage} from '../actions'
+
 
 // 0 - Gestores
 // 1 - Mentores
@@ -23,7 +27,13 @@ const grades = ['Gestores','Mentores','Tercero','Cuarto'];
 
 const Login = (props) => {
 
-  if(!props){
+
+  useEffect(() => {
+    if(props.userRoll === null){
+      props.loginFirstStage(false);
+    }
+  },[]);
+
     return (
       <div>
         <Auth
@@ -32,14 +42,8 @@ const Login = (props) => {
          />
       </div>
     );
-  }
-  return (
-    <div>
-    <Auth
-      roll={`${grades[props.userRoll]}`}
-     />
-    </div>
-  );
+  // }
+  //
 }
 
 const mapStateToProps = (state) => {
@@ -49,4 +53,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps,{loginFirstStage})(Login);

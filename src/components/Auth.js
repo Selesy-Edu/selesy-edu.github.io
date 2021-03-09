@@ -69,18 +69,14 @@ const Auth = (props) => {
     }
   },[logged,password,passwordVal]);
 
-  const pushUserData = (d) => {
-    console.log(d);
-  }
-
   if(logged){
     return <Home />;
   }
-  if(props.roll != 'Gestores' && !logged && user.data === null){
+  if(props.roll != 'Gestores' && !logged){
     return (
       <div className="card selectCard" style={{width: "25rem"}}>
         <div className="card-body">
-          <h6 className="card-title text-spaced-2">{`Resolviste el acertijo de: ${props.roll}`}</h6>
+          <h6 className="card-title text-spaced-2">{`${props.roll}`}</h6>
           <div style={{display:"block"}}>
             <label className="text-spaced-3">Email</label>
             <input type="email" id="email" className="input-card" onChange={(e) => setEmail(e.target.value)} />

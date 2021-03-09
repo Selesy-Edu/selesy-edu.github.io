@@ -18,8 +18,8 @@ import aire from '../assets/images/aire.png'
 
 // import brickAudio from '../assets/audio/brick.m4a'
 
-window.p5 = p5;
-require( "p5/lib/addons/p5.sound")
+// window.p5 = p5;
+// require( "p5/lib/addons/p5.sound")
 
 let s = undefined;
 

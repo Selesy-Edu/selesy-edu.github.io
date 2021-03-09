@@ -17,7 +17,7 @@ const App = (props) => {
   const user = useUser();
 
   useEffect(()=>{
-    if(user.hasEmitted && !props.firstStageStatus){
+    if(user.data !== null && !props.firstStageStatus){
       props.loadUserData(user);
       props.loginFirstStage(user.hasEmitted);
       setLogged(true);

@@ -2,9 +2,11 @@ import {React, useState} from 'react'
 import { Redirect } from "react-router-dom"
 import MainScreen from '../animations/MainScreen'
 import Profile from './Profile'
-import Landing from './landing'
+import App from '../App'
 
 import {connect} from 'react-redux'
+import { useUser } from 'reactfire'
+
 import {loadUserData,loginFirstStage} from '../actions'
 
 import avatar from '../assets/images/avatar.jpg'
@@ -16,6 +18,8 @@ const Home = (props) => {
   const [elapsedTime, setElapsetTime] = useState([]);
   const [profileToggle, setProfileToggle] = useState(false);
 
+  const user = useUser();
+
   if(profileToggle){
     return(
       <Profile
@@ -23,6 +27,7 @@ const Home = (props) => {
       />
     );
   }
+  if(user.data !== null){
     return(
       <div className="container">
         <Instructions
@@ -46,6 +51,8 @@ const Home = (props) => {
         />
       </div>
     );
+  }
+  return <App />;
 }
 
 const MainPanel = (props) => {

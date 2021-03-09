@@ -433,8 +433,7 @@ class HomePuzzle extends React.Component {
   }
   render(){
     return(
-      <div className="defaultP5">
-      </div>
+      <React.Fragment />
     );
   }
 }

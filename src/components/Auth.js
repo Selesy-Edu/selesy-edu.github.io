@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import SignOut from './SignOut'
 import Home from './home'
+import Landing from './landing'
 import Gestores from './Gestores'
+import Mentores from './Mentores'
 import 'firebase/auth'
 import firebaseAuth from "firebase/app";
 import { useFirebaseApp, useUser } from 'reactfire'
@@ -22,6 +24,8 @@ const Auth = (props) => {
   const [logged, setLogged] = useState(false);
   const [loggedAdmin, setLoggedAdmin] = useState(false);
   const [adminAccess, setAdminAccess] = useState(false);
+  const [loggedMentor, setLoggedMentor] = useState(false);
+  const [mentorAccess, setMentorAccess] = useState(false);
   const [fullName, setFullName] = useState('');
   const [emailParents, setEmailParents] = useState('');
   const [institution, setInstitution] = useState('');
@@ -37,7 +41,6 @@ const Auth = (props) => {
    firebaseAuth.auth().setPersistence(firebaseAuth.auth.Auth.Persistence.NONE).then(
       ()=> {
         setLoginReady(true);
-        console.log("SESSION");
       }
     );
   }
@@ -55,12 +58,10 @@ const Auth = (props) => {
     );
   }
 
-  const loginAdmin = async () => {
-    await firebase.auth().signInWithEmailAndPassword(email,password).then(
+  const loginAdmin = () => {
+    firebase.auth().signInWithEmailAndPassword(email,password).then(
       () => {
-        setUserData(user);
-        setLoggedAdmin(true);
-        checkLogin();
+        checkLoginAdmin();
       },
       (e) => {
         setEmailNotFound(e.code);
@@ -68,6 +69,16 @@ const Auth = (props) => {
     );
   }
 
+  const loginMentor = () => {
+    firebase.auth().signInWithEmailAndPassword(email,password).then(
+      () => {
+        checkLoginMentor();
+      },
+      (e) => {
+        setEmailNotFound(e.code);
+      }
+    );
+  }
 
   const createUser = async () => {
     await firebase.auth().createUserWithEmailAndPassword(email,password).then(
@@ -76,24 +87,28 @@ const Auth = (props) => {
     );
   }
 
-  const verifyPass = (input1, input2) => {
-    if(props.roll !== "Gestores"){
-      if(input1 === input2  && input1 != ''){
-        document.getElementById("auth-button").disabled = false;
-      }
-      if(input1 != input2){
-        document.getElementById("auth-button").disabled = true;
-      }
-    }
-  }
-
-  const checkLogin = () => {
+  const checkLoginAdmin = () => {
     if(user.data !== null && props.roll === "Gestores"){
       db.ref().child(user.data.uid).on(
         'value',(snapshot) => {
           let snap = snapshot.val();
           let access = snap.access;
           setAdminAccess(access.Gestores);
+          setUserData(user);
+          setLoggedAdmin(true);
+        }
+      );
+    }
+  }
+  const checkLoginMentor = () => {
+    if(user.data !== null && props.roll === "Mentores"){
+      db.ref().child(user.data.uid).on(
+        'value',(snapshot) => {
+          let snap = snapshot.val();
+          let access = snap.access;
+          setMentorAccess(access.Mentores);
+          setLoggedMentor(true);
+          setUserData(user);
         }
       );
     }
@@ -104,48 +119,25 @@ const Auth = (props) => {
   }
 
   useEffect(() => {
-    if(user.data != null && props.roll !== "Gestores"){
-      setLogged(true)
-    }
-    if(!logged){
-      verifyPass(password,passwordVal);
-    }
-  },[logged,password,passwordVal,loggedAdmin]);
+
+  },[loginReady,loginAdmin,loginMentor]);
+
 
   if(logged && props.roll !== "Gestores" && props.roll !== "Mentores"){
     return <Home />;
   }
+
   if(adminAccess){
     return(
       <Gestores />
     );
   }
-  if(props.roll !== 'Gestores' && !logged){
-    return (
-      <div className="card selectCard" style={{width: "30rem"}}>
-        <div className="card-body">
-          <h6 className="card-title text-spaced-2">{`Accediste con un password para: ${props.roll}`}</h6>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-3">Email</label>
-            <input type="email" id="email" className="input-card" onChange={(e) => setEmail(e.target.value)} />
-            <p><strong>{emailNotFound}</strong></p>
-          </div>
-          <div style={{display:"block"}} className="container">
-            <label className="text-spaced-1">Password </label>
-            <input type={seePass ? 'text' : 'password'} className="input-card" onChange={(e) => setPassword(e.target.value)}/>
-            <img src={icon} id="togglePassword" onClick={(e)=> seePassIcon()}/>
-          </div>
-          <div style={{display:"block"}}>
-            <label className="text-spaced-3">Repeat password</label>
-            <input type={seePass ? 'text' : 'password'} className="input-card" onChange={(e) => setPasswordVal(e.target.value)}/>
-            <img src={icon} id="togglePassword" onClick={(e)=> seePassIcon()}/>
-          </div>
-          <button id="auth-button" onClick={login} className="buttonSubmit">login</button>
-          <SignOut />
-        </div>
-      </div>
-    )
+  if(mentorAccess){
+    return(
+      <Mentores />
+    );
   }
+
   if(props.roll === 'Gestores' && !logged){
     return(
       <div className="container">
@@ -161,15 +153,63 @@ const Auth = (props) => {
             </div>
             <div style={{display:"block"}}>
               <label className="text-spaced-1">Password</label>
-              <input type="password" className="input-card" onChange={(e) => setPassword(e.target.value)}/>
+              <input type={seePass ? 'text' : 'password'} className="input-card" onChange={(e) => setPassword(e.target.value)}/>
               <img src={icon} id="togglePassword" onClick={(e)=> seePassIcon()}/>
             </div>
-            <button id="auth-button" onClick={loginAdmin} className="buttonSubmit">login</button>
+            <button id="auth-button" onClick={e => loginAdmin()} className="buttonSubmit">login</button>
             <SignOut />
           </div>
         </div>
       </div>
     );
+  }
+
+  if(props.roll === 'Mentores' && !logged){
+    return(
+      <div className="container">
+        <div className="card selectCard" style={{width: "25rem"}}>
+          <div className="card-body">
+            <h6 className="card-title text-spaced-2">
+              <p>Hola Mentor, realiza tu login para poder ingresar a la plataforma</p>
+            </h6>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-3">Email</label>
+              <input type="email" id="email" className="input-card" onChange={(e) => setEmail(e.target.value)} />
+              <p><strong>{emailNotFound}</strong></p>
+            </div>
+            <div style={{display:"block"}}>
+              <label className="text-spaced-1">Password</label>
+              <input type={seePass ? 'text' : 'password'} className="input-card" onChange={(e) => setPassword(e.target.value)}/>
+              <img src={icon} id="togglePassword" onClick={(e)=> seePassIcon()}/>
+            </div>
+            <button id="auth-button" onClick={e => loginMentor()} className="buttonSubmit">login</button>
+            <SignOut />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if(props.roll !== 'Gestores' && props.roll !== 'Mentores' && !logged){
+    return (
+      <div className="card selectCard" style={{width: "30rem"}}>
+        <div className="card-body">
+          <h6 className="card-title text-spaced-2">{`Accediste con un password para: ${props.roll}`}</h6>
+          <div style={{display:"block"}}>
+            <label className="text-spaced-3">Email</label>
+            <input type="email" id="email" className="input-card" onChange={(e) => setEmail(e.target.value)} />
+            <p><strong>{emailNotFound}</strong></p>
+          </div>
+          <div style={{display:"block"}} className="container">
+            <label className="text-spaced-1">Password </label>
+            <input type={seePass ? 'text' : 'password'} className="input-card" onChange={(e) => setPassword(e.target.value)}/>
+            <img src={icon} id="togglePassword" onClick={(e)=> seePassIcon()}/>
+          </div>
+          <button id="auth-button" onClick={login} className="buttonSubmit">login</button>
+          <SignOut />
+        </div>
+      </div>
+    )
   }
 }
 
@@ -198,27 +238,3 @@ export default connect(mapStateToProps)(Auth);
 //     hourPreference: '',
 //     dayPreference: ''
 //   });
-//   if(user.data === null){
-//     return (
-//       <div className="card selectCard" style={{width: "25rem"}}>
-//         <div className="card-body">
-//           <h5 className="card-title">ADMIN</h5>
-//           <div style={{display:"block"}}>
-//             <label className="text-spaced-3">Email</label>
-//             <input type="email" id="email" className="input-card" onChange={(e) => setEmail(e.target.value)} />
-//             <p><strong>{newUser}</strong></p>
-//           </div>
-//           <div style={{display:"block"}}>
-//             <label className="text-spaced-1">Password</label>
-//             <input type="text" className="input-card" onChange={(e) => setPassword(e.target.value)}/>
-//           </div>
-//           <div style={{display:"block"}}>
-//             <label className="text-spaced-3">Repeat password</label>
-//             <input type="text" className="input-card" onChange={(e) => setPasswordVal(e.target.value)}/>
-//           </div>
-//           <button id="auth-button" onClick={createUser} className="buttonSubmit">create user</button>
-//         </div>
-//       </div>
-//     );
-//   }
-// }

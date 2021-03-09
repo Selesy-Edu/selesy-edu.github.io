@@ -28,7 +28,7 @@ class HomePuzzle extends React.Component {
   state = {
     passKeys: [
       [3,2,1,0], //Gestores
-      [4,3,1,2], //Mentores
+      [0,1,3,2], //Mentores
       [0,1,2,3]  //tercero
     ]
   };

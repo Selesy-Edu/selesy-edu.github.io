@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import Landing from './landing'
 import 'firebase/auth'
 import { useFirebaseApp} from 'reactfire'
 import {connect} from 'react-redux'
@@ -7,19 +6,28 @@ import {connect} from 'react-redux'
 import {loadUserData,loginFirstStage, userRollPass} from '../actions'
 
 const SignOut = (props) => {
+  const [signOutCompleted, setSignOutCompleted] = useState(false);
+
   const firebase = useFirebaseApp();
 
   const signOutFB = async () =>{
     await firebase.auth().signOut().then(
       () => {
-        sessionStorage.clear();
-        localStorage.clear();
-        props.loginFirstStage(false);
-        props.loadUserData({});
-        props.userRollPass(null);
+        setSignOutCompleted(true);
       }
     );
   }
+
+  useEffect(()=>{
+    if(signOutCompleted){
+      sessionStorage.clear();
+      localStorage.clear();
+      props.loginFirstStage(false);
+      props.loadUserData({});
+      props.userRollPass(null);
+    }
+  },[signOutCompleted]);
+
     return (
       <button
         id="signout-button"

@@ -8,9 +8,9 @@
     "firestore.js.map": "/static/js/firestore.10a61434.chunk.js.map",
     "functions.js": "/static/js/functions.d7aca85d.chunk.js",
     "functions.js.map": "/static/js/functions.d7aca85d.chunk.js.map",
-    "main.css": "/static/css/main.7e6b52e8.chunk.css",
-    "main.js": "/static/js/main.d6409db2.chunk.js",
-    "main.js.map": "/static/js/main.d6409db2.chunk.js.map",
+    "main.css": "/static/css/main.951845e2.chunk.css",
+    "main.js": "/static/js/main.19d3844c.chunk.js",
+    "main.js.map": "/static/js/main.19d3844c.chunk.js.map",
     "messaging.js": "/static/js/messaging.fa5da741.chunk.js",
     "messaging.js.map": "/static/js/messaging.fa5da741.chunk.js.map",
     "performance.js": "/static/js/performance.03b8197b.chunk.js",
@@ -21,22 +21,21 @@
     "runtime-main.js.map": "/static/js/runtime-main.c825d36e.js.map",
     "storage.js": "/static/js/storage.a2b8d0e5.chunk.js",
     "storage.js.map": "/static/js/storage.a2b8d0e5.chunk.js.map",
-    "static/js/10.2a5226a8.chunk.js": "/static/js/10.2a5226a8.chunk.js",
-    "static/js/10.2a5226a8.chunk.js.map": "/static/js/10.2a5226a8.chunk.js.map",
+    "static/js/10.b1158d00.chunk.js": "/static/js/10.b1158d00.chunk.js",
+    "static/js/10.b1158d00.chunk.js.map": "/static/js/10.b1158d00.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.7e6b52e8.chunk.css.map": "/static/css/main.7e6b52e8.chunk.css.map",
-    "static/js/10.2a5226a8.chunk.js.LICENSE.txt": "/static/js/10.2a5226a8.chunk.js.LICENSE.txt",
-    "static/media/Background.9b7e5f4c.png": "/static/media/Background.9b7e5f4c.png",
+    "static/css/main.951845e2.chunk.css.map": "/static/css/main.951845e2.chunk.css.map",
+    "static/js/10.b1158d00.chunk.js.LICENSE.txt": "/static/js/10.b1158d00.chunk.js.LICENSE.txt",
     "static/media/app.css": "/static/media/DINNextLTPro-Medium.b5aa4088.ttf",
-    "static/media/Trazado.419a4305.png": "/static/media/Trazado.419a4305.png",
     "static/media/avatar.674cef7f.jpg": "/static/media/avatar.674cef7f.jpg",
+    "static/media/background.fdd8261f.png": "/static/media/background.fdd8261f.png",
     "static/media/tableroBack.39a02af6.png": "/static/media/tableroBack.39a02af6.png",
     "static/media/world.42bf7f54.png": "/static/media/world.42bf7f54.png"
   },
   "entrypoints": [
     "static/js/runtime-main.c825d36e.js",
-    "static/js/10.2a5226a8.chunk.js",
-    "static/css/main.7e6b52e8.chunk.css",
-    "static/js/main.d6409db2.chunk.js"
+    "static/js/10.b1158d00.chunk.js",
+    "static/css/main.951845e2.chunk.css",
+    "static/js/main.19d3844c.chunk.js"
   ]
 }

@@ -253,7 +253,7 @@ const Auth = (props) => {
 const LoginCard = (props) => {
   return(
     <Container className={`bg-img opacity-${props.opacity}`} fluid style={{backgroundImage:`url(${background})`}}>
-      <Container style={{marginTop:'8vh'}}>
+      <Container style={{marginTop:'4vh'}}>
           <Card id="login-card" style={{backgroundImage:`url(${logCard})`}}>
             <Card.Body>
               <Card.Title className="text-center">{props.welcomeText}</Card.Title>

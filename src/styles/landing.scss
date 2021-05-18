@@ -60,7 +60,8 @@
   position: relative;
   display: flex;
   height: 100%;
-  align-items: center;
+  justify-content: center;
+  align-content: center;
   flex-direction: column;
 }
 

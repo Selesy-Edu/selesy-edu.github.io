@@ -9,7 +9,7 @@ import {loadUserData,loginFirstStage} from './actions'
 import {AuthCheck} from 'reactfire'
 
 import Spinner from 'react-bootstrap/Spinner'
-import './styles/app.css'
+import './styles/app.scss'
 
 const App = (props) => {
 

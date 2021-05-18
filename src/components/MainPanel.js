@@ -42,6 +42,7 @@ const MainPanel = (props) => {
   const returnHome = () => {
     props.setIndex(-1)
     props.setAppActive(false)
+    props.setEnterContent(false)
   }
 
   return(
@@ -56,7 +57,9 @@ const MainPanel = (props) => {
           onClick={() => setToggleMainPanel(!toggleMainPanel)}
           style={{cursor:'pointer'}}
           >
-            <p id='p-main-place'>{props.place}</p>
+            <p
+              className={`${toggleMainPanel}`}
+              id='p-main-place'>{props.place}</p>
             <Img src={toggle} className={`toggle-pos-${toggleMainPanel}`} id="main-panel-toggle"/>
         </div>
         <Container className={`main-panel panel-display-${toggleMainPanel}`}>

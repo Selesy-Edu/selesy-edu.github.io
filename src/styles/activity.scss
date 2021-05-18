@@ -1,0 +1,44 @@
+@import "mixins";
+
+.container-activity-full{
+  @include fullSize;
+}
+
+
+.frontImg-activity{
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  z-index:1000;
+}
+
+.btn-glass-intro{
+    @include centerAnchorFixed;
+    z-index: 10000;
+    border: none;
+    background: rgba( 255, 255, 255, 0 );
+}
+
+.btn-glass-intro:hover{
+    background: rgba( 255, 255, 255, 0.03 );
+}
+
+.bubble-info{
+  @include centerAnchorFixed;
+  z-index: 10000;
+  font-size: 2rem;
+  width: 16rem;
+  background-color: red;
+  font-family: "Learners";
+  border-radius: 2rem;
+  padding: 1rem;
+  border: 3px solid #c67206;
+  background: rgb(250,202,64);
+  background: linear-gradient(180deg, rgba(250,202,64,1) 0%, rgba(253,165,23,1) 100%);
+  color: #20253b;
+}

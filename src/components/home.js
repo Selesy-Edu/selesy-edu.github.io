@@ -81,6 +81,7 @@ const Home = (props) => {
     setIndex((Math.abs(index-1))%2)
   }
 
+
   return(
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
       <AuthCheck fallback={<App />}>
@@ -92,6 +93,22 @@ const Home = (props) => {
             <Container className="justify-content-center">
               <ActivityDisplay
                 index={index}
+                />
+                <MainPanel
+                  textFunction={appActive && index === 0 ? 'PIXELAPP CMD' : 'COORDENADAS'}
+                  commandForTarget={(val) => setCommandsForTarget(val)}
+                  button1={diagram}
+                  button2={tierra}
+                  button1Action={() => setSetContentActive(!contentActive)}
+                  button2Action={() => setAppActive(!appActive)}
+                  setAppActive={setAppActive}
+                  bt1State={props.userInfo.info.profileImage}
+                  bt2State={props.userInfo.info.profileImage}
+                  btProfileState={props.userInfo.info.profileImage}
+                  appActive={appActive}
+                  setEnterContent={setEnterContent}
+                  setIndex={setIndex}
+                  place={place}
                 />
             </Container>
           </Container>
@@ -151,6 +168,7 @@ const Home = (props) => {
                 bt2State={props.userInfo.info.profileImage}
                 btProfileState={props.userInfo.info.profileImage}
                 appActive={appActive}
+                setEnterContent={setEnterContent}
                 setIndex={setIndex}
                 place={place}
               >

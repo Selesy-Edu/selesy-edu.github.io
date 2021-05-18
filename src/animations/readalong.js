@@ -53,18 +53,20 @@ componentDidMount(){
         sketch.update()
       }
 
-      let currentTime = this.player.howler.seek() * 1000
-      for(let i = 0; i < pText.length; i++){
-        p[i].removeAttribute('style');
-        if(currentTime >= Math.round(offsets[i]) && currentTime < Math.round(offsets[i+1])){
-          word = i*2;
+      if(this.player.howler.playing()){
+        let currentTime = this.player.howler.seek() * 1000
+        for(let i = 0; i < pText.length; i++){
+          p[i].removeAttribute('style');
+          if(currentTime >= Math.round(offsets[i]) && currentTime < Math.round(offsets[i+1])){
+            word = i*2;
+          }
         }
-      }
-      p[word].style('color','#0000ff');
-      p[word].style('text-decoration','underline');
-      p[word].style('background-color','lightblue');
-      if(word >= 2){
-        p[word - 2].removeAttribute('style');
+        p[word].style('color','#0000ff');
+        p[word].style('text-decoration','underline');
+        p[word].style('background-color','lightblue');
+        if(word >= 2){
+          p[word - 2].removeAttribute('style');
+        }
       }
     };
   };

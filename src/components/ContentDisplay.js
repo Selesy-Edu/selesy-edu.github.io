@@ -64,7 +64,9 @@ const ContentDisplay = (props) => {
   const guide = guideMap.map((val,i) => {
       if(i !== index-1){
         return(
-            <button className="btn-guide-content"></button>
+            <button
+              onClick={()=> setIndex(i+1)}
+              className="btn-guide-content"></button>
           )
       }
       return(

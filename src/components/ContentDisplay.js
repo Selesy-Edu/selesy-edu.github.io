@@ -94,7 +94,7 @@ const ContentDisplay = (props) => {
               setIndexUp={setIndexUp}
               setIndexDown={setIndexDown}
             />
-          <span className="container-btn-guide" style={{transform:`translate(-${props.contentToDiplay['structure']['intro'] * 10}px,320px)`}}>
+          <span className="container-btn-guide-activity" style={{transform:`translate(-${props.contentToDiplay['structure']['intro'] * 10}px,320px)`}}>
               <div style={{display:'flex'}}>
                 {guide}
               </div>

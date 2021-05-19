@@ -42,3 +42,36 @@
   background: linear-gradient(180deg, rgba(250,202,64,1) 0%, rgba(253,165,23,1) 100%);
   color: #20253b;
 }
+
+.bg-img-activity{
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.p-mainText-activity{
+  font-family: "Learners";
+  font-size: 3rem;
+  text-align: center;
+  width: 32rem;
+}
+
+.container-mainText-activity{
+  position: fixed;
+  z-index: 10000;
+  top: 20vh;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.container-btn-guide-activity{
+  display: inline;
+  position:fixed;
+  left: 50%;
+  top:50%;
+  z-index:8000;
+}

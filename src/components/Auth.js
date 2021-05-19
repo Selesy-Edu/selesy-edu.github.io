@@ -258,7 +258,7 @@ const LoginCard = (props) => {
             <Card.Body>
               <Card.Title className="text-center">{props.welcomeText}</Card.Title>
               <Card.Subtitle className="text-center">{props.emailNotFound}</Card.Subtitle>
-              <InputGroup className="mb-5 login-input-email" size="lg">
+              <InputGroup className="mb-1 login-input-email" size="lg">
                 <InputGroup.Prepend className="email-selecu">
                   <InputGroup.Text id="inputGroup-sizing-lg"></InputGroup.Text>
                 </InputGroup.Prepend>
@@ -270,7 +270,7 @@ const LoginCard = (props) => {
                   onChange={e => props.setEmail(e.target.value)}
                 />
               </InputGroup>
-              <InputGroup className="mb-5 login-input-pwd" size="lg" id="password">
+              <InputGroup className="mb-3 login-input-pwd" size="lg" id="password">
                 <InputGroup.Prepend>
                   <Button variant="outline-secondary">
                     <Image src={icon} id="togglePassword" onClick={(e)=> props.seePassIcon()} alt="show password"/>

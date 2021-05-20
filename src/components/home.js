@@ -39,6 +39,7 @@ import { IconContext } from "react-icons";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { FaChild } from "react-icons/fa";
 import { FaFilm } from "react-icons/fa";
+import { AiFillFileAdd } from "react-icons/ai";
 
 import ContentLoader from './ContentLoader'
 import ContentDisplay from './ContentDisplay'
@@ -228,13 +229,13 @@ const NavPixel = (props) => {
     <Container className="main-panel-c">
       {!props.readyState &&
         <>
-        <span
+        <div
           className="bt-active-true"
           onClick={()=> props.setCamaraState(!props.camaraState)}
         >
           <Img src={button} className="bt-pixelapp"/>
           <IconContext.Provider
-            value={{ color: 'white', size: '50px' }}
+            value={{ color: 'white', size: '50px'}}
           >
           {props.camaraState
             ?<FiCameraOff className="center-icons-b"/>
@@ -242,9 +243,9 @@ const NavPixel = (props) => {
           }
 
           </IconContext.Provider>
-        </span>
+        </div>
 
-        <span
+        <div
           className="bt-active-true"
           onClick={()=> props.setGridState(!props.gridState)}
         >
@@ -257,13 +258,14 @@ const NavPixel = (props) => {
             :<MdGridOn className="center-icons-b"/>
           }
           </IconContext.Provider>
-        </span>
+        </div>
 
-        <span
+        <div
           className="bt-active-true"
           onClick={()=> props.setPaintState(!props.paintState)}
         >
-          <Img src={button} className="bt-pixelapp"/>
+          <Img
+            src={button} className="bt-pixelapp"/>
           <IconContext.Provider
             value={{ color: 'white', size: '30px' }}
           >
@@ -271,11 +273,27 @@ const NavPixel = (props) => {
             <FaFilm className="center-icons-f"/>
           }
           </IconContext.Provider>
-        </span>
+        </div>
+
+        <label
+          for="uploadImg"
+          className="bt-active-true"
+          onClick={()=> props.setPaintState(!props.paintState)}
+        >
+          <Img
+            src={button} className="bt-pixelapp"/>
+          <IconContext.Provider
+            value={{ color: 'white', size: '30px' }}
+          >
+          {!props.readyState &&
+            <AiFillFileAdd className="center-icons-f"/>
+          }
+          </IconContext.Provider>
+        </label>
         </>
       }
 
-      <span
+      <div
         className="bt-active-true"
         onClick={()=> props.setReadyState(!props.readyState)}
         setReadyState={props.setReadyState}
@@ -286,10 +304,10 @@ const NavPixel = (props) => {
         >
         {props.readyState
           ?<IoArrowUndoOutline className="center-icons-c"/>
-          :<FaStar className="center-icons-c"/>
+        :<FaStar className="center-icons-f"/>
         }
         </IconContext.Provider>
-      </span>
+      </div>
 
     </Container>
   )
@@ -306,7 +324,7 @@ const NavProfile = (props) => {
         <IconContext.Provider
           value={{ color: 'white', size: '30px' }}
         >
-        <FaChild className="center-icons-c"/>
+        <FaChild className="center-icons-f"/>
         </IconContext.Provider>
       </span>
     </Container>

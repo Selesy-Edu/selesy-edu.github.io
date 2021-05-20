@@ -337,7 +337,7 @@ class PixelArt extends React.Component {
                   setColor={this.setColor}
                 />
               </Row>
-              <Row className="justify-content-center" style={{display:'flex'}}>
+              <Row className="justify-content-center" style={{display:'flex', zIndex:'2000', height:'10rem', overflow:'hidden'}}>
                 <Col>
                   <div className="savedColor one-color">
                     <button

@@ -162,7 +162,8 @@
   z-index: 3000;
   top: 50%;
   left:50%;
-  height: 0px;
+  height: 80px;
+  min-width: 80px;
 }
 
 .c-settings{
@@ -180,9 +181,11 @@
 
 .main-panel-c{
   position: fixed;
+  display: flex;
+  flex-direction: row;
   width: 340px;
+  max-height: 58px;
   z-index: 3000;
-  display: inline;
   left: 300px;
   bottom: 45px;
 }
@@ -292,6 +295,11 @@
   border: none;
   top:176px;
   left:50%;
+  height: 60px;
+}
+
+.button-pages:focus{
+  outline: none;
 }
 
 .bt-back{
@@ -302,9 +310,12 @@
 }
 
 .bt-active-true{
+  max-width: 58px;
+  overflow: hidden;
   cursor: pointer;
-  width: 0px;
+  margin-right: 0.2rem;
 }
+
 .bt-active-false{
   cursor:default;
 }
@@ -334,18 +345,18 @@
 }
 
 .center-icons-c{
-  position: relative;
-  transform: translate(-40px,0px);
+  position: fixed;
+  transform: translate(-38px,16px);
 }
 .center-icons-f{
-  position: relative;
-  transform: translate(-40px,0px);
+  position: fixed;
+  transform: translate(-40px,8px);
 }
 
 .center-icons-tn{
   position: relative;
-  transform: translate(8px,-44px);
-  width: 34px;
+  transform: translate(8px,-42px);
+  width: 30px;
 }
 .center-icons-sm{
   position: relative;
@@ -384,9 +395,11 @@
 
 .bt-pixelapp{
   width: 50px;
+  height: 50px;
   color: #fff;
   margin-left: 0.4rem;
-  display: inline
+  display: inline;
+  cursor: pointer;
 }
 
 .bt-main-menu{
@@ -449,7 +462,9 @@
   outline: none;
 }
 
-.btn-guide-content-active:active{
+
+
+.btn-guide-content-active:focus{
   outline: none;
 }
 
@@ -457,4 +472,8 @@
   position: fixed;
   transform: translate(-20px,10rem);
   z-index: 6000;
+}
+
+input[type="file"] {
+    display: none;
 }

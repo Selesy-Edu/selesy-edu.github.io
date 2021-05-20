@@ -164,11 +164,12 @@ input[type=range]::-webkit-slider-thumb {
   border: 6px ridge #d6a770;
   position: absolute;
   background-color: #fff;
-  z-index: 1000;
+  z-index: 3000;
   border-radius: 50px;
   width: 6rem;
   height: 6rem;
   top: 4rem;
+  overflow: hidden;
   justify-content: flex-start;
 }
 
@@ -185,7 +186,7 @@ input[type=range]::-webkit-slider-thumb {
 .bg-img-pixelapp{
   @include background-pos-top;
   top: 0px;
-  height: 550px;
+  height: 540px;
   padding-top: 4rem;
   padding-left: 0px;
   transform-origin: center;

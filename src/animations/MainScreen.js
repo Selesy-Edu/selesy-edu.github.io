@@ -37,8 +37,8 @@ class MainScreen extends React.Component {
     y: 0,
     genX: 0,
     genY: 0,
-    commands: []
-    // current: this.props.userInfo.progress.current
+    commands: [],
+    current: 0
   };
 
   onClick = (value) => {
@@ -49,6 +49,8 @@ class MainScreen extends React.Component {
   // }
 
   componentDidMount(){
+
+    this.setState({current:this.props.userInfo.progress.current })
 
     const code = (sketch) => {
 
@@ -161,8 +163,8 @@ class MainScreen extends React.Component {
       sketch.draw = () => {
 
         this.setState({commands:parser(this.props.commands)})
-        tPosY = -sketch.map(this.state.commands[0],0,90,0,height/2) + sketch.map(this.state.commands[1],0,90,0,height/2) + (height/2)
-        tPosX = -sketch.map(this.state.commands[2],0,180,0,width/2) + sketch.map(this.state.commands[3],0,180,0,width/2) + (width/2)
+        tPosY = -sketch.map(this.state.commands[0]%91,0,90,0,height/2) + sketch.map(this.state.commands[1]%91,0,90,0,height/2) + (height/2)
+        tPosX = -sketch.map(this.state.commands[2]%181,0,180,0,width/2) + sketch.map(this.state.commands[3]%181,0,180,0,width/2) + (width/2)
         sketch.background(0)
 
         sketch.image(background,width/2,height/2,width,height)

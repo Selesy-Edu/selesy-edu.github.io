@@ -1,8 +1,9 @@
-import React, {useEffect, useState}  from 'react';
+import React, {Suspense, useEffect, useState}  from 'react';
 import {connect} from 'react-redux'
 import { useFirebaseApp, StorageImage } from 'reactfire'
 
 import Container from 'react-bootstrap/Container'
+import Spinner from 'react-bootstrap/Spinner'
 import '../styles/activity.scss'
 
 const ActivityDisplay = (props) => {
@@ -71,6 +72,8 @@ const ActivityDisplay = (props) => {
   return(
     <>
     {done &&
+      <>
+      <Suspense fallback={<Spinner animation="border" variant="primary" />}>
       <ActivityTemplate
         bg={props.contentToDiplay[index].imgPathBG}
         front={props.contentToDiplay[index].imgPath}
@@ -92,6 +95,8 @@ const ActivityDisplay = (props) => {
           </span>
         }
       </ActivityTemplate>
+    </Suspense>
+      </>
     }
     </>
   )

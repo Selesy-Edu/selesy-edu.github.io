@@ -1,10 +1,12 @@
 .card-profile-primero{
   border: none;
   width: 36rem;
+  min-height: 36rem;
   font-family: 'learners';
   background: rgba(255,255,255,0);
   background-color: rgba(255,255,255,0);
   font-size: 1.2rem;
+  overflow: hidden;
 }
 
 .input-profile{

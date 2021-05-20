@@ -7,7 +7,7 @@ import fondo from '../assets/images/pixelapp/fondo-colors.png'
 
 const MainProfile = (props) => {
   return (
-    <Container className="bg-img-profile font-learners" fluid
+    <Container className="bg-img-profile" fluid
       style={{backgroundImage: `url(${fondo})`, paddingLeft:'0rem',position:'absolute'}}>
         <Profile
           updateState={props.updateState}

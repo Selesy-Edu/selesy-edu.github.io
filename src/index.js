@@ -23,6 +23,9 @@ import Home from './components/home'
 import Gestores from './components/Gestores'
 import Mentores from './components/Mentores'
 
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import reportWebVitals from './reportWebVitals';
+
 const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
@@ -52,3 +55,6 @@ ReactDOM.render(
   </FirebaseAppProvider>,
   document.getElementById('root')
 );
+
+serviceWorkerRegistration.register()
+reportWebVitals(console.log)

@@ -1,16 +1,13 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import p5 from 'p5';
 import UploadPhoto from '../../components/uploadPhoto'
 import fondo from '../../assets/images/pixelapp/fondo-colors.png'
 
 import ColorPicker from './colorPicker'
 
-import {AuthCheck} from 'reactfire'
-
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
-import Spinner from 'react-bootstrap/Spinner'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'

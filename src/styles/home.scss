@@ -243,35 +243,35 @@
   position: fixed;
   display: inline;
   width: 100%;
-  z-index: 4000;
-  top:1rem;
+  z-index: 1000;
+  top:0.5rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .img-text-background{
   width: 620px;
-}
-
-.centerX{
-  left: 50%;
-  transform: translateX(50%);
+  display: inline;
+  transform: translate(58%,0%);
+  z-index: 1000;
 }
 
 .p-content-main{
   position: absolute;
-  z-index: 4000;
+  z-index: 6000;
   font-family: 'Learners';
   font-size: 2.5rem;
   text-align: center;
   top: 2rem;
-  width: 44%;
+  width: 34rem;
   height: 50vh;
-  left:27%;
-  padding: 1rem;
+  left:29vw;
+  padding: 0.5rem;
 }
 
 .input-content-enter{
   position: absolute;
-  z-index: 4000;
+  z-index: 6000;
   font-family: 'Learners';
   font-size: 2.5rem;
   text-align: center;
@@ -290,15 +290,15 @@
   z-index: 4000;
   background-color: rgba(255,255,255,0);
   border: none;
+  top:176px;
+  left:50%;
 }
 
 .bt-back{
-  top:176px;
-  left:296px;
+  transform: translate(-20.5rem,);
 }
 .bt-next{
-  top:176px;
-  left:890px;
+  transform: translate(16.5rem,);
 }
 
 .bt-active-true{
@@ -423,7 +423,7 @@
 .container-btn-guide{
   display: inline;
   position:fixed;
-  // transform: translate(50%,320px);
+  left:50%;
   z-index:8000;
 }
 
@@ -435,6 +435,7 @@
   margin-right: 20px;
   background-color: #e88b12;
   border-style: inset;
+  outline: none;
 }
 
 .btn-guide-content-active{
@@ -445,11 +446,15 @@
   margin-right: 20px;
   background-color: #30cfff;
   border-style: inset;
+  outline: none;
+}
+
+.btn-guide-content-active:active{
+  outline: none;
 }
 
 .btn-audioReader{
   position: fixed;
-  top:350px;
-  left: 610px;
+  transform: translate(-20px,10rem);
   z-index: 6000;
 }

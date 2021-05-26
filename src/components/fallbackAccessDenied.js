@@ -11,9 +11,9 @@ const FallbackAccessDenied = (props) => {
   return (
     <Container className="bg-img" fluid style={{backgroundImage:`url(${background})`}}>
       <Container fluid>
-        <Card style={{width:'60%',left:"20%"}} className="text-center">
+        <Card style={{width:'60%',left:"20%", height:'20rem'}} className="text-center">
           <Card.Body>
-            <Card.Title>ACCESO DENEGADO</Card.Title>
+            <Card.Title style={{height:'2rem'}}>ACCESO DENEGADO</Card.Title>
             <Card.Text>
               {`No tienes autorización para ingresar como: ${props.roll}.
                Si crees que esto es un error, portate bien, haz tus tareas,

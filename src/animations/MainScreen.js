@@ -50,7 +50,7 @@ class MainScreen extends React.Component {
 
   componentDidMount(){
 
-    this.setState({current:this.props.userInfo.progress.current })
+    // this.setState({current:this.props.userInfo.progress.current })
 
     const code = (sketch) => {
 

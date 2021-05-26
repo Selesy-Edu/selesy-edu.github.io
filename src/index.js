@@ -26,6 +26,8 @@ import Mentores from './components/Mentores'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+import Secuencer from './animations/secuenciador'
+
 const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
@@ -47,6 +49,7 @@ ReactDOM.render(
             <Route path ="/homegestores" component={Gestores}/>
 
             <Route path ="/home" component={Home} exact />
+            <Route path ="/test" component={Secuencer} exact />
 
           </Switch>
         </HashRouter>

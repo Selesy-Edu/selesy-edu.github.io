@@ -303,7 +303,7 @@ const NavPixel = (props) => {
           value={{ color: 'white', size: '30px' }}
         >
         {props.readyState
-          ?<IoArrowUndoOutline className="center-icons-c"/>
+          ?<IoArrowUndoOutline className="center-icons-f"/>
         :<FaStar className="center-icons-f"/>
         }
         </IconContext.Provider>

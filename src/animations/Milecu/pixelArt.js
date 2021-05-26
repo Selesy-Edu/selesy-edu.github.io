@@ -2,9 +2,13 @@ import React from 'react';
 import p5 from 'p5';
 import UploadPhoto from '../../components/uploadPhoto'
 import fondo from '../../assets/images/pixelapp/fondo-colors.png'
+import button from '../../assets/images/icons/fondo.png'
 
 import ColorPicker from './colorPicker'
 
+import { IconContext } from "react-icons";
+import { FaEraser } from "react-icons/fa";
+import { FaPencilAlt } from "react-icons/fa";
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
@@ -19,6 +23,7 @@ class PixelArt extends React.Component {
 
   state = {
     commands: [],
+    paint: true,
     setGrid: false,
     camaraState: false,
     usePhoto: false,
@@ -80,6 +85,9 @@ class PixelArt extends React.Component {
   usePhotoToDraw = () => {
     this.setState({usePhoto:true})
     this.setState({camaraState:false})
+  }
+  setPaintState = () => {
+    this.setState({paint:!this.state.paint})
   }
 
   componentDidMount(){
@@ -183,10 +191,10 @@ class PixelArt extends React.Component {
         if(sketch.mouseY > 0 && sketch.mouseY < 400){
           var temp = Math.floor((sketch.mouseY)/pixSize) + Math.floor((sketch.mouseX)/ pixSize) * (height/pixSize);
         }
-        if(paintState){
+        if(this.state.paint){
           colorGrid[temp] = this.state.color;
         }
-        if(!paintState){
+        if(!this.state.paint){
           colorGrid[temp] = {r:255,g:255,b:255,o:0};
         }
       }
@@ -332,12 +340,30 @@ class PixelArt extends React.Component {
           :
           <>
             <Col className={`canvas-${!this.props.ready}`}>
+              <Row className="justify-content-center" style={{display:'flex', flexDirection:'column', position:'fixed'}}>
+                <span
+                  onClick={()=> this.setPaintState()}
+                  className="bt-active-true"
+                >
+                  <Image src={button} className="bt-pixelapp"/>
+                  <IconContext.Provider
+                    value={{ color: 'white', size: '30px' }}
+                  >
+                  {this.state.paint
+                    ?<FaEraser className="center-icons-f"/>
+                    :<FaPencilAlt className="center-icons-f"/>
+                  }
+
+                  </IconContext.Provider>
+                </span>
+              </Row>
               <Row className="justify-content-center" style={{display:'flex'}}>
+
                 <ColorPicker
                   setColor={this.setColor}
                 />
               </Row>
-              <Row className="justify-content-center" style={{display:'flex', zIndex:'2000', height:'10rem', overflow:'hidden'}}>
+              <Row className="justify-content-center" style={{display:'flex', zIndex:'2000', height:'10rem', overflow:'hidden', marginRight: '6rem'}}>
                 <Col>
                   <div className="savedColor one-color">
                     <button

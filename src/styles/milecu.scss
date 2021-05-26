@@ -87,9 +87,9 @@
 
 .divColorPicker-border{
   position: relative;
-  width: 480px;
-  height: 188px;
-  border: 10px ridge #d6a770;
+  width: 476px;
+  height: 186px;
+  border: 8px ridge #d6a770;
   border-radius: 0.8rem;
   margin-right: 5rem;
   overflow: hidden;
@@ -99,7 +99,6 @@
   -webkit-appearance: none;
   position: relative;
   display: block;
-  right:0.5;
   margin-top: 0.8rem;
   z-index: 1000;
   width: 90%;
@@ -127,7 +126,7 @@ input[type=range]::-moz-range-thumb {
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   border: 1px solid rgb(255,160,0);
   height: 16px;
-  width: 16px;
+  width: 14px;
   border-radius: 51% 49% 50% 50% / 16% 17% 83% 84% ;
   background: rgb(255,200,0);
   cursor: pointer;
@@ -136,7 +135,7 @@ input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: 1px solid rgb(255,160,0);
   height: 16px;
-  width: 16px;
+  width: 14px;
   border-radius: 51% 49% 50% 50% / 16% 17% 83% 84% ;
   background: rgb(255,200,0);
   cursor: pointer;
@@ -145,8 +144,8 @@ input[type=range]::-webkit-slider-thumb {
 }
 #slidersColorPicker {
   position: absolute;
-  right: 0px;
-  width: 60%;
+  right: 18px;
+  width: 58%;
 }
 
 #preview-avatar{

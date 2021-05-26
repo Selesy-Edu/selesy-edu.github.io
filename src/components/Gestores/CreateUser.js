@@ -17,6 +17,7 @@ const CreateUser = (props) => {
   const[msg, setMsg] = useState('');
   const[initDB, setInitDB] = useState(false);
   const[dcheck, setDCheck] = useState(false);
+  const[dcheckReady, setDCheckReady] = useState(false);
   const[passIUG, setpassIUG] = useState('');
 
   const firebase = useFirebaseApp();
@@ -25,6 +26,12 @@ const CreateUser = (props) => {
 
   const inputForm = useRef(null);
   let verCode = props.userData.data.uid.slice(0, 4);
+
+  useEffect(()=>{
+    if(fullName !== '' && email !== '' && password !== '' && institution !== '' && year !== '' && nuip !== ''){
+      setDCheckReady(true)
+    }
+  })
 
   useEffect(()=>{
     if(user.data !== null && initDB){
@@ -58,8 +65,10 @@ const CreateUser = (props) => {
   },[user.data]);
 
   const doubleCheck = () => {
+    if(dcheckReady){
       setDCheck(true);
       setMsg("Por favor revise los datos antes de oprimir -Crear-");
+    }
   }
 
   const createUser = async (event) => {
@@ -94,7 +103,7 @@ const CreateUser = (props) => {
             </Container>
             <Container>
               <label className="text-spaced-1">Cédula o NUIP</label>
-              <input className="input" type="text" required onChange={e => setNuip(e.target.value)}/>
+              <input className="input" type="number" required onChange={e => setNuip(e.target.value)}/>
             </Container>
             <Container>
               <label className="text-spaced-1">Email acudiente</label>
@@ -109,8 +118,21 @@ const CreateUser = (props) => {
               <input className="input" type="text" required onChange={e => setInstitution(e.target.value)}/>
             </Container>
             <Container>
-              <label className="text-spaced-1">Año</label>
-              <input  className="input" type="text" required onChange={e => setYear(e.target.value)}/>
+              <label className="text-spaced-1">Grado</label>
+                <select name="year" id="year" className="input"  required onChange={e => setYear(e.target.value)}>
+                  <option value=""></option>
+                  <option value="primero">primero</option>
+                  <option value="segundo">segundo</option>
+                  <option value="tercero">tercero</option>
+                  <option value="cuarto">cuarto</option>
+                  <option value="quinto">quinto</option>
+                  <option value="sexto">sexto</option>
+                  <option value="séptimo">séptimo</option>
+                  <option value="octavo">octavo</option>
+                  <option value="noveno">noveno</option>
+                  <option value="décimo">décimo</option>
+                  <option value="once">once</option>
+                </select>
             </Container>
             <hr/>
               {(initDB && msg !== '' ) &&

@@ -255,20 +255,22 @@
 
 .img-text-background{
   width: 620px;
-  display: inline;
+  //
   z-index: 1000;
 }
 
 .p-content-main{
-  position: absolute;
   z-index: 6000;
+  position: absolute;
+  display: inline;
   font-family: 'Learners';
   font-size: 2.5rem;
   text-align: center;
   top: 2rem;
   width: 34rem;
   height: 50vh;
-  left:30vw;
+  left:50%;
+  transform: translate(-50%,0px);
   padding: 0.5rem;
 }
 
@@ -434,14 +436,15 @@
 }
 
 .container-btn-guide{
-  display: inline;
   position:fixed;
   left:50%;
+  top: 50%;
   z-index:8000;
+  display: flex;
 }
 
 .btn-guide-content{
-  display: flex;
+
   width: 15px;
   height: 15px;
   border-radius: 50%;

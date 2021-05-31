@@ -46,6 +46,7 @@ componentDidMount(){
 
     sketch.setup = () => {
       divMain = document.getElementById('main-container-text')
+      sketch.noCanvas()
     };
 
     sketch.draw = () => {

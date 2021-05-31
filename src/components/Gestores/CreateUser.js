@@ -31,6 +31,7 @@ const CreateUser = (props) => {
     if(fullName !== '' && email !== '' && password !== '' && institution !== '' && year !== '' && nuip !== ''){
       setDCheckReady(true)
     }
+    console.log(year)
   })
 
   useEffect(()=>{
@@ -56,6 +57,9 @@ const CreateUser = (props) => {
           institution: institution,
           year: year,
           NUIP: nuip
+        },
+        progress:{
+          current: 0
         }
       });
       db.ref('/lists/'+fullName).set({
@@ -121,17 +125,17 @@ const CreateUser = (props) => {
               <label className="text-spaced-1">Grado</label>
                 <select name="year" id="year" className="input"  required onChange={e => setYear(e.target.value)}>
                   <option value=""></option>
-                  <option value="primero">primero</option>
-                  <option value="segundo">segundo</option>
-                  <option value="tercero">tercero</option>
-                  <option value="cuarto">cuarto</option>
-                  <option value="quinto">quinto</option>
-                  <option value="sexto">sexto</option>
-                  <option value="séptimo">séptimo</option>
-                  <option value="octavo">octavo</option>
-                  <option value="noveno">noveno</option>
-                  <option value="décimo">décimo</option>
-                  <option value="once">once</option>
+                  <option value="Primero">Primero</option>
+                  <option value="Segundo">Segundo</option>
+                  <option value="Tercero">Tercero</option>
+                  <option value="Cuarto">Cuarto</option>
+                  <option value="Quinto">Quinto</option>
+                  <option value="Sexto">Sexto</option>
+                  <option value="Séptimo">Séptimo</option>
+                  <option value="Octavo">Octavo</option>
+                  <option value="Noveno">Noveno</option>
+                  <option value="Décimo">Décimo</option>
+                  <option value="Once">Once</option>
                 </select>
             </Container>
             <hr/>

@@ -1,5 +1,6 @@
 import React from 'react';
 import p5 from 'p5';
+import {connect} from 'react-redux'
 
 import mapa from '../assets/images/mapa/mapa.png'
 import fondo from '../assets/images/mapa/fondo.jpg'
@@ -49,8 +50,7 @@ class MainScreen extends React.Component {
   // }
 
   componentDidMount(){
-
-    // this.setState({current:this.props.userInfo.progress.current })
+    this.setState({current: typeof this.props.userInfo.progress !== 'undefined' ? this.props.userInfo.progress.current : 0 })
 
     const code = (sketch) => {
 
@@ -125,6 +125,7 @@ class MainScreen extends React.Component {
       }
 
       sketch.setup = () => {
+
         sketch.imageMode(sketch.CENTER)
 
         width = sketch.displayWidth
@@ -161,7 +162,8 @@ class MainScreen extends React.Component {
       };
 
       sketch.draw = () => {
-
+        this.setState({current: typeof this.props.userInfo.progress !== 'undefined' ? this.props.userInfo.progress.current : 0 })
+        
         this.setState({commands:parser(this.props.commands)})
         tPosY = -sketch.map(this.state.commands[0]%91,0,90,0,height/2) + sketch.map(this.state.commands[1]%91,0,90,0,height/2) + (height/2)
         tPosX = -sketch.map(this.state.commands[2]%181,0,180,0,width/2) + sketch.map(this.state.commands[3]%181,0,180,0,width/2) + (width/2)
@@ -359,4 +361,11 @@ class MainScreen extends React.Component {
   }
 }
 
-export default MainScreen;
+const mapStateToProps = (state) => {
+  return {
+    userData: state.loadUserData,
+    userInfo: state.loadUserInfo
+  };
+}
+
+export default connect(mapStateToProps)(MainScreen);

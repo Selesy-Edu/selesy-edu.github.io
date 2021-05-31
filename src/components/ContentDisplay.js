@@ -41,12 +41,14 @@ const ContentDisplay = (props) => {
   }
 
   useEffect(()=>{
-    let temp = []
-    for(let i = 0; i < props.contentToDiplay['structure']['intro']; i++){
-      temp.push(i)
+    if(typeof props.contentToDiplay['structure'] !== 'undefined'){
+      let temp = []
+      for(let i = 0; i < props.contentToDiplay['structure']['intro']; i++){
+        temp.push(i)
+      }
+      setGuideMap(temp)
     }
-    setGuideMap(temp)
-  },[])
+  },[props.contentToDiplay])
 
   useEffect(()=>{
     const timer = setTimeout(() => {
@@ -56,8 +58,10 @@ const ContentDisplay = (props) => {
   },[inputText])
 
   useEffect(()=>{
-    if(index > props.contentToDiplay['structure']['intro']){
-      props.setSetContentActive(false)
+    if(typeof props.contentToDiplay['structure'] !== 'undefined'){
+      if(index > props.contentToDiplay['structure']['intro']){
+        props.setSetContentActive(false)
+      }
     }
   })
 

@@ -26,11 +26,14 @@ const UploadPhoto = (props) => {
 
   useEffect(()=>{
     if(start){
+      console.log()
       let time = new Date().getTime()
       db.ref().child("/users/"+user.data.uid.slice(0,10)+'/picture/perfil.jpg').put(props.image).then((snapshot)=>{
         setDone(true);
         data.ref().child("/users/"+user.data.uid.slice(0,10)+'/info/profileImage/').set(true);
-        // data.ref().child("/users/"+user.data.uid.slice(0,10)+'/progress/current/').set(true);
+        if(props.userInfo.progress.current === 0){
+          data.ref().child("/users/"+user.data.uid.slice(0,10)+'/progress/current/').set(1);
+        }
       })
       db.ref().child("/users/"+user.data.uid.slice(0,10)+'/picture/perfil.jpg').getDownloadURL().then((url)=>{
         data.ref().child("/users/"+user.data.uid.slice(0,10)+'/info/profileImageURL/').set(url);

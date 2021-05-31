@@ -315,7 +315,7 @@ class PixelArt extends React.Component {
 
   render(){
     return (
-      <Container id="pixelapp-main-container" className="bg-img-pixelapp" fluid style={{backgroundImage: `url(${fondo})`}}>
+      <Container id="pixelapp-main-container"  className="bg-img-pixelapp" fluid style={{backgroundImage: `url(${fondo})`}}>
         <Row>
           <Col className="justify-content-center" style={{display:'flex', padding:'0px',flexGrow: `${this.props.ready ? 0 : 1}`}}>
             <div id="divPixelArt" className={`canvas-${!this.props.ready}`}></div>
@@ -363,7 +363,7 @@ class PixelArt extends React.Component {
                   setColor={this.setColor}
                 />
               </Row>
-              <Row className="justify-content-center" style={{display:'flex', zIndex:'2000', height:'10rem', overflow:'hidden', marginRight: '6rem'}}>
+              <Row className="justify-content-center" style={{display:'flex', zIndex:'2000', minHeight:'10rem', overflow:'hidden', marginRight: '6rem'}}>
                 <Col>
                   <div className="savedColor one-color">
                     <button

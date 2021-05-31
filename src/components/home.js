@@ -47,7 +47,7 @@ import ContentDisplay from './ContentDisplay'
 const Home = (props) => {
   const [commandForTarget, setCommandsForTarget] = useState(' ')
   const [registry, setRegistry] = useState('')
-  const [contentActive, setSetContentActive] = useState(false)
+  const [contentActive, setContentActive] = useState(false)
   const [appActive, setAppActive] = useState(false)
   const [index, setIndex] = useState(-1)
 
@@ -65,6 +65,15 @@ const Home = (props) => {
     let type = props.userInfo.info === '' ? 'undefined' : props.userInfo.registry.year
     setRegistry(type)
   })
+
+  window.onbeforeunload = (event) => {
+    const e = event || window.event;
+    e.preventDefault()
+    if (e) {
+      e.returnValue = ''
+    }
+    return ''
+  };
 
   useEffect(()=>{
     if(place !== ''){
@@ -100,8 +109,8 @@ const Home = (props) => {
                   commandForTarget={(val) => setCommandsForTarget(val)}
                   button1={diagram}
                   button2={tierra}
-                  button1Action={() => setSetContentActive(!contentActive)}
-                  button2Action={() => setAppActive(!appActive)}
+                  button1Action={() => setContentActive(appActive ? null : !contentActive)}
+                  button2Action={() => setAppActive()}
                   setAppActive={setAppActive}
                   bt1State={props.userInfo.info.profileImage}
                   bt2State={props.userInfo.info.profileImage}
@@ -109,6 +118,7 @@ const Home = (props) => {
                   appActive={appActive}
                   setEnterContent={setEnterContent}
                   setIndex={setIndex}
+                  index={index}
                   place={place}
                 />
             </Container>
@@ -129,7 +139,7 @@ const Home = (props) => {
           />
         {contentActive && !appActive &&
           <ContentDisplay
-            setSetContentActive={setSetContentActive}
+            setSetContentActive={setContentActive}
              />
         }
         {index >= 0 &&
@@ -162,13 +172,15 @@ const Home = (props) => {
                 commandForTarget={(val) => setCommandsForTarget(val)}
                 button1={diagram}
                 button2={tierra}
-                button1Action={() => setSetContentActive(!contentActive)}
+                button1Action={() => setContentActive(appActive ? null : !contentActive)}
                 button2Action={() => setAppActive(!appActive)}
                 setAppActive={setAppActive}
                 bt1State={props.userInfo.info.profileImage}
                 bt2State={props.userInfo.info.profileImage}
                 btProfileState={props.userInfo.info.profileImage}
                 appActive={appActive}
+                contentActive={contentActive}
+                setContentActive={setContentActive}
                 setEnterContent={setEnterContent}
                 setIndex={setIndex}
                 place={place}
@@ -276,7 +288,7 @@ const NavPixel = (props) => {
         </div>
 
         <label
-          for="uploadImg"
+          htmlFor="uploadImg"
           className="bt-active-true"
           onClick={()=> props.setPaintState(!props.paintState)}
         >

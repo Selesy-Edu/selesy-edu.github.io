@@ -40,9 +40,14 @@ const MainPanel = (props) => {
   }
 
   const returnHome = () => {
-    props.setIndex(-1)
-    props.setAppActive(false)
-    props.setEnterContent(false)
+    if(props.appActive || props.contentActive){
+      if(window.confirm('Puedes perder el progreso ¿deseas continuar?')){
+        props.setIndex(-1)
+        props.setAppActive(false)
+        props.setEnterContent(false)
+        props.setContentActive(false)
+      }
+    }
   }
 
   return(
@@ -90,13 +95,13 @@ const MainPanel = (props) => {
               <ReactSVG className="center-icons-sm" src={props.button1}/>
             </span>
 
-            <Link to="home"
+            <span
               onClick={() => returnHome()}
               className={`main-panel-a c-settings bt-active-${props.bt2State}`}
             >
               <Img src={button} className="panel-button-img-lg" />
               <ReactSVG className="center-icons-lg" src={props.button2}/>
-            </Link>
+            </span>
             <span className={`main-panel-submenu ${toggleSubMenu}`}>
               <ReactSVG
                 onClick={() => setApp(0)}

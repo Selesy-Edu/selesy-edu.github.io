@@ -11,7 +11,7 @@ const ContentLoader = (props) => {
 
   useEffect(()=>{
     if(props.degree !== 'undefined'){
-      db.ref().child("/content/"+props.degree+"/"+"1"+"/").get().then((snapshot) => {
+      db.ref().child("/content/"+props.degree+"/"+props.userInfo.progress.current+"/").get().then((snapshot) => {
         if (snapshot.exists()) {
           props.loadContent(snapshot.val())
         } else {

@@ -1,9 +1,11 @@
 import React, {Suspense, useEffect, useState}  from 'react';
 import {connect} from 'react-redux'
-import { useFirebaseApp, StorageImage } from 'reactfire'
+import { useFirebaseApp, StorageImage, useStorage } from 'reactfire'
+import PreCacheImg from 'react-precache-img'
 
 import Container from 'react-bootstrap/Container'
 import Spinner from 'react-bootstrap/Spinner'
+import Img from "react-cool-img"
 import '../styles/activity.scss'
 
 const ActivityDisplay = (props) => {
@@ -12,6 +14,24 @@ const ActivityDisplay = (props) => {
   const [index, setIndex] = useState(0)
   const [done, setDone] = useState(false)
   const [guideMap, setGuideMap] = useState([])
+
+  const [images,setImages] = useState([])
+  const [loading,setLoading] = useState(true)
+
+  const fstore = useStorage()
+
+  useEffect(()=>{
+    if(typeof props.contentToDiplay !== 'undefined'){
+      let temp = []
+      props.contentToDiplay['images'].map((url)=>{
+        fstore.ref().child(url).getDownloadURL().then((snap)=>{
+          temp.push(snap)
+        })
+      })
+      setImages(temp)
+      console.log(temp)
+    }
+  },[])
 
 
   useEffect(()=>{
@@ -24,7 +44,6 @@ const ActivityDisplay = (props) => {
       temp.push(i)
     }
     setGuideMap(temp)
-
   },[])
 
 
@@ -71,14 +90,19 @@ const ActivityDisplay = (props) => {
 
   return(
     <>
+    <PreCacheImg
+      images={images}
+      />
     {done &&
       <>
       <Suspense fallback={<Spinner animation="border" variant="primary" />}>
       <ActivityTemplate
-        bg={props.contentToDiplay[index].imgPathBG}
-        front={props.contentToDiplay[index].imgPath}
+        bg={images[props.contentToDiplay[index].imgPathBG]}
+        front={images[props.contentToDiplay[index].imgPath]}
         setIndex={setIndex}
         index={index}
+        images={images}
+        test={props.contentToDiplay[index].imgPathBG}
         >
         {Bubbles}
         {Buttons}
@@ -103,19 +127,26 @@ const ActivityDisplay = (props) => {
 }
 
 const ActivityTemplate = (props) => {
+  console.log(props)
   return(
     <>
       <div className="container-glass-full"></div>
         <>
         {props.children}
-        <StorageImage
+        {/*<StorageImage
           className="bg-img-activity"
             storagePath={props.bg}
             />
         <StorageImage
           storagePath={props.front}
           className="frontImg-activity"
-          />
+          />*/}
+          <Img
+            className="bg-img-activity"
+            src={props.bg}/>
+          <Img
+            className="frontImg-activity"
+            src={props.front}/>
         </>
     </>
   )

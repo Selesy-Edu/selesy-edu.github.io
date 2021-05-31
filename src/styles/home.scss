@@ -17,6 +17,7 @@
 .home-canvas-container{
   @include padding-reset;
   @include fullSize;
+  z-index: -1000;
 }
 
 .container-glass-full{
@@ -302,10 +303,10 @@
 }
 
 .bt-back{
-  transform: translate(-20.5rem,);
+  transform: translate(-20.5rem,0px);
 }
 .bt-next{
-  transform: translate(16.5rem,);
+  transform: translate(17.2rem,0px);
 }
 
 .bt-active-true{

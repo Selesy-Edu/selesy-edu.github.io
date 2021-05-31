@@ -186,11 +186,14 @@ input[type=range]::-webkit-slider-thumb {
 .bg-img-pixelapp{
   @include background-pos-top;
   top: 0px;
-  min-height: 540px;
+  min-height: 80%;
+  width: 100%;
+  min-width: 100%;
   padding-top: 4rem;
   padding-left: 0px;
+  padding-right:0px;
   transform-origin: center;
-  transform: scale(1);
+  overflow: hidden;
 }
 
 .bg-img-profile{

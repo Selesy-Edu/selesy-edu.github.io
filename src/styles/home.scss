@@ -244,7 +244,7 @@
 
 .container-text-background{
   position: fixed;
-  display: inline;
+  display: flex;
   width: 100%;
   z-index: 1000;
   top:0.5rem;
@@ -255,7 +255,6 @@
 .img-text-background{
   width: 620px;
   display: inline;
-  transform: translate(58%,0%);
   z-index: 1000;
 }
 
@@ -268,7 +267,7 @@
   top: 2rem;
   width: 34rem;
   height: 50vh;
-  left:29vw;
+  left:30vw;
   padding: 0.5rem;
 }
 

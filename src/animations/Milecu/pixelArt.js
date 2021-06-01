@@ -315,8 +315,8 @@ class PixelArt extends React.Component {
 
   render(){
     return (
-      <Container id="pixelapp-main-container"  className="bg-img-pixelapp" fluid style={{backgroundImage: `url(${fondo})`}}>
-        <Row>
+      <Container id="pixelapp-main-container"  className="bg-img-main" fluid style={{backgroundImage: `url(${fondo})`, position:'absolute'}}>
+        <Row style={{paddingTop:'1rem'}}>
           <Col className="justify-content-center" style={{display:'flex', padding:'0px',flexGrow: `${this.props.ready ? 0 : 1}`}}>
             <div id="divPixelArt" className={`canvas-${!this.props.ready}`}></div>
           </Col>

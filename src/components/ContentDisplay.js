@@ -19,6 +19,7 @@ const ContentDisplay = (props) => {
   const [index, setIndex] = useState(0)
   const [inputText, setInputText] = useState('')
   const [guideMap, setGuideMap] = useState([])
+  const [doneLoading, setDoneLoading] = useState(false)
 
   const checkInput = (text) => {
     const posible = ['COMO','CÓMO','¿COMO','¿CÓMO','PUEDO','AYUDAR','AYUDAR?']
@@ -47,8 +48,9 @@ const ContentDisplay = (props) => {
         temp.push(i)
       }
       setGuideMap(temp)
+      setDoneLoading(true)
     }
-  },[props.contentToDiplay])
+  },[props.contentToDiplay['structure']])
 
   useEffect(()=>{
     const timer = setTimeout(() => {
@@ -88,7 +90,7 @@ const ContentDisplay = (props) => {
             />
           </ContainerBack>
         }
-        {index >= 1 && index <= props.contentToDiplay['structure']['intro'] &&
+        {doneLoading && index >= 1 && index <= props.contentToDiplay['structure']['intro'] &&
           <ContainerBack>
             <TxtAlone
               text={props.contentToDiplay[index].mainText}

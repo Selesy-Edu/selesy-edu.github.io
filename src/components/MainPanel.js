@@ -1,7 +1,7 @@
 import React,  {useState, useEffect} from 'react'
 import { Link } from "react-router-dom"
 import {StorageImage} from 'reactfire'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import { ReactSVG } from 'react-svg'
 import ReactHowler from 'react-howler'
 

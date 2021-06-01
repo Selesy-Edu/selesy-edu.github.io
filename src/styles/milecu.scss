@@ -10,8 +10,9 @@
 
 #pixelapp-main-container{
   position:absolute;
-  min-width: 100%;
-  min-height: 80%;
+  width: 100vw;
+  height: 540px;
+  min-height: 540px;
   z-index: 1000;
 }
 
@@ -184,24 +185,14 @@ input[type=range]::-webkit-slider-thumb {
   cursor: pointer;
 }
 
-.bg-img-pixelapp{
+.bg-img-main{
   @include background-pos-top;
-  top: 0px;
-  min-height: 80%;
-  width: 100%;
-  min-width: 100%;
-  padding-top: 4rem;
-  padding-left: 0px;
-  padding-right:0px;
-  transform-origin: center;
   overflow: hidden;
-}
-
-.bg-img-profile{
-  @include background-pos-top;
   top: 0px;
   height: 38rem;
+  padding: 0;
+  margin: 0;
   padding-top: 2rem;
+  background-size: 97% 100%;
   transform-origin: center;
-  transform: scale(1);
 }

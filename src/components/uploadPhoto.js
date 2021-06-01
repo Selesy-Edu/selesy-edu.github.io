@@ -32,7 +32,7 @@ const UploadPhoto = (props) => {
         setDone(true);
         data.ref().child("/users/"+user.data.uid.slice(0,10)+'/info/profileImage/').set(true);
         if(props.userInfo.progress.current === 0){
-          data.ref().child("/users/"+user.data.uid.slice(0,10)+'/progress/current/').set(1);
+          data.ref().child("/users/"+user.data.uid.slice(0,10)+'/progress/current/').set(1);//TODO
         }
       })
       db.ref().child("/users/"+user.data.uid.slice(0,10)+'/picture/perfil.jpg').getDownloadURL().then((url)=>{

@@ -308,7 +308,7 @@ const NavPixel = (props) => {
       <div
         className="bt-active-true"
         onClick={()=> props.setReadyState(!props.readyState)}
-        setReadyState={props.setReadyState}
+
       >
         <Img src={button} className="bt-pixelapp"/>
         <IconContext.Provider
@@ -324,7 +324,7 @@ const NavPixel = (props) => {
     </Container>
   )
 }
-
+        // setReadyState={props.setReadyState}
 const NavProfile = (props) => {
   return (
     <Container className="main-panel-c">

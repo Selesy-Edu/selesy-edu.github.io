@@ -1,6 +1,6 @@
 import React from 'react';
 import p5 from 'p5';
-import ReactHowler from 'react-howler'
+import ReactHowler, {onStop} from 'react-howler'
 
 let s = undefined;
 
@@ -53,11 +53,17 @@ componentDidMount(){
       if(this.state.done){
         sketch.update()
       }
-
+      if(!this.player.howler.playing()){
+        this.props.setPlay(false)
+        p.map((word)=>{
+          word.removeAttribute('style')
+        })
+        p[pText.length].removeAttribute('style')
+      }
       if(this.player.howler.playing()){
         let currentTime = this.player.howler.seek() * 1000
         for(let i = 0; i < pText.length; i++){
-          p[i].removeAttribute('style');
+          p[i].removeAttribute('style')
           if(currentTime >= Math.round(offsets[i]) && currentTime < Math.round(offsets[i+1])){
             word = i*2;
           }
@@ -77,7 +83,6 @@ componentDidMount(){
 componentDidUpdate(){
     if(this.state.text !== this.props.text){
       this.setState({done:true, text: this.props.text})
-      console.log(this.state.text)
     }
 }
   componentWillUnmount(){

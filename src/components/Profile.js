@@ -82,7 +82,7 @@ const Profile = (props) => {
     <Suspense fallback={<Spinner animation="border" variant="primary" />}>
       <AuthCheck fallback={<App />}>
         <Row>
-          <Col className="justify-content-center">
+          <Col className="justify-content-center" style={{display:'flex'}}>
             <Card className={`card-profile-${props.level} text-center`}>
               <Card.Body>
                 <Card.Title as="h1">Mi perfil</Card.Title>
@@ -97,7 +97,7 @@ const Profile = (props) => {
               </ Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col className="justify-content-center" style={{display:'flex'}}>
             <Card className={`card-profile-${props.level}`}>
               <Card.Body>
                   <form>

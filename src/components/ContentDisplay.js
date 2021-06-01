@@ -13,7 +13,10 @@ import next from '../assets/images/icons/next.svg'
 import back from '../assets/images/icons/back.svg'
 import button from '../assets/images/icons/fondo.png'
 
-import andre from '../assets/audio/andre.mp3'
+import audio1 from '../assets/audio/1.1-1.ogg'
+import audio2 from '../assets/audio/1.1-2.ogg'
+import audio3 from '../assets/audio/1.1-3.ogg'
+import audio4 from '../assets/audio/1.1-4.ogg'
 
 const ContentDisplay = (props) => {
   const [index, setIndex] = useState(0)
@@ -87,6 +90,8 @@ const ContentDisplay = (props) => {
             <Intro
               setInputText={setInputText}
               nick={props.userInfo.info.nick}
+              audio={audio1}
+              index={index}
             />
           </ContainerBack>
         }
@@ -94,8 +99,8 @@ const ContentDisplay = (props) => {
           <ContainerBack>
             <TxtAlone
               text={props.contentToDiplay[index].mainText}
-              offsets={[108.844, 402.721, 653.061, 783.673, 968.707, 1676.19, 2427.21, 2927.89, 3700.68, 4146.94, 4255.78, 4321.09, 4408.16, 4549.66, 4723.81, 5344.22]}
-              audio={andre}
+              offsets={[20.0,120.0,230.0,1000.0,1150.0,1230.0,2000.0,2100.0,2180.0,3240.0]}
+              audio={audio2}
               index={index}
               setIndexUp={setIndexUp}
               setIndexDown={setIndexDown}
@@ -126,7 +131,12 @@ const Intro = (props) => {
       <p className="p-content-main">
         {props.nick}
         <br />
-        ¡El mundo te necesita!
+          <TxtAlone
+            text={'¡El mundo te necesita!'}
+            offsets={[40.0,242.0,552.0,900.0,1200.0]}
+            audio={props.audio}
+            index={props.index}
+          />
       </p>
       <input
         onChange={e => props.setInputText(e.target.value)}
@@ -146,6 +156,7 @@ const TxtAlone = (props) => {
         audio={props.audio}
         />
     </div>
+
       {props.index > 1 &&
         <button
           onClick={()=>props.setIndexDown()}
@@ -154,12 +165,14 @@ const TxtAlone = (props) => {
           <ReactSVG className="center-icons-tn" src={back}/>
         </button>
       }
-      <button
-        onClick={()=>props.setIndexUp()}
-        className="button-pages bt-next">
-        <Img src={button} style={{width:'3rem',display:'inline'}}/>
-        <ReactSVG className="center-icons-tn" src={next}/>
-      </button>
+      {props.index !== 0 &&
+        <button
+          onClick={()=>props.setIndexUp()}
+          className="button-pages bt-next">
+          <Img src={button} style={{width:'3rem',display:'inline'}}/>
+          <ReactSVG className="center-icons-tn" src={next}/>
+        </button>
+      }
     </>
   )
 }

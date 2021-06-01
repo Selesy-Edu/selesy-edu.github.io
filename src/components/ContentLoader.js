@@ -14,7 +14,6 @@ const ContentLoader = (props) => {
     if(!contentLoaded){
       if(props.degree !== 'undefined'){
         db.ref().child("/content/"+props.degree+"/"+props.userInfo.progress.current+"/").get().then((snapshot) => {
-          console.log("/content/"+props.degree+"/"+props.userInfo.progress.current+"/")
           if (snapshot.exists()) {
             props.loadContent(snapshot.val())
             setContentLoaded(true)

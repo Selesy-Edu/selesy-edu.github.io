@@ -26,7 +26,6 @@ const UploadPhoto = (props) => {
 
   useEffect(()=>{
     if(start){
-      console.log()
       let time = new Date().getTime()
       db.ref().child("/users/"+user.data.uid.slice(0,10)+'/picture/perfil.jpg').put(props.image).then((snapshot)=>{
         setDone(true);
@@ -35,14 +34,18 @@ const UploadPhoto = (props) => {
           data.ref().child("/users/"+user.data.uid.slice(0,10)+'/progress/current/').set(1);//TODO
         }
       })
+      db.ref().child(`/community/${time}.jpg`).put(props.image).then((snapshot)=>{
+        db.ref().child(`/community/${time}.jpg`).getDownloadURL().then((url)=>{
+          data.ref('/community/general/'+time+'/').set({
+            name: userInfo.nick,
+            photo: url,
+            post: '¡He creado un nuevo Pixel Art!',
+            type: 0
+          })
+        })
+      })
       db.ref().child("/users/"+user.data.uid.slice(0,10)+'/picture/perfil.jpg').getDownloadURL().then((url)=>{
         data.ref().child("/users/"+user.data.uid.slice(0,10)+'/info/profileImageURL/').set(url);
-        data.ref('/community/general/'+time+'/').set({
-          name: userInfo.nick,
-          photo: url,
-          post: '¡He creado un nuevo Pixel Art!',
-          type: 0
-        });
       })
     }
   },[start]);

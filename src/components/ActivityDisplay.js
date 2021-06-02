@@ -5,7 +5,7 @@ import PreCacheImg from 'react-precache-img'
 
 import Container from 'react-bootstrap/Container'
 import Spinner from 'react-bootstrap/Spinner'
-import Img from "react-cool-img"
+
 import '../styles/activity.scss'
 
 const ActivityDisplay = (props) => {
@@ -21,18 +21,18 @@ const ActivityDisplay = (props) => {
   const fstore = useStorage()
 
   useEffect(()=>{
-    if(typeof props.contentToDiplay !== 'undefined'){
+    if(loading){
       let temp = []
-      props.contentToDiplay['images'].map((url)=>{
-        fstore.ref().child(url).getDownloadURL().then((snap)=>{
-          temp.push(snap)
+      for(let i = 0; i < props.contentToDiplay['images'].length; i++){
+        fstore.ref().child(props.contentToDiplay['images'][i]).getDownloadURL().then((snap)=>{
+          temp[i] = snap
         })
-      })
+      }
       setImages(temp)
-      console.log(temp)
+      setLoading(false)
+      preloadImages(images,()=>setLoading(true))
     }
-  },[])
-
+  })
 
   useEffect(()=>{
     setIndex(props.contentToDiplay['structure']['intro']+1)
@@ -46,6 +46,24 @@ const ActivityDisplay = (props) => {
     setGuideMap(temp)
   },[])
 
+  function preloadImages(urls, allImagesLoadedCallback){
+    var loadedCounter = 0;
+    var toBeLoadedNumber = urls.length;
+    urls.forEach(function(url){
+      preloadImage(url, function(){
+          loadedCounter++;
+          console.log('Number of loaded images: ' + loadedCounter);
+        if(loadedCounter == toBeLoadedNumber){
+          allImagesLoadedCallback();
+        }
+      });
+    });
+    function preloadImage(url, anImageLoadedCallback){
+        var img = new Image();
+        img.onload = anImageLoadedCallback;
+        img.src = url;
+    }
+  }
 
   const Guide = guideMap.map((val,i) => {
       if(i !== (index-props.contentToDiplay['guide'].start)){
@@ -64,7 +82,6 @@ const ActivityDisplay = (props) => {
   ?  props.contentToDiplay[index]['bubbles'].map((b)=>{
       return (
         <PopupInfo
-          id={b.text}
           text={b.text}
           x={b.x}
           y={b.y}
@@ -77,6 +94,7 @@ const ActivityDisplay = (props) => {
   ?  props.contentToDiplay[index]['btns'].map((b)=>{
       return (
         <BtnTransparent
+          id={b.x}
           x={b.x}
           y={b.y}
           w={b.width}
@@ -90,9 +108,6 @@ const ActivityDisplay = (props) => {
 
   return(
     <>
-    <PreCacheImg
-      images={images}
-      />
     {done &&
       <>
       <Suspense fallback={<Spinner animation="border" variant="primary" />}>
@@ -102,7 +117,6 @@ const ActivityDisplay = (props) => {
         setIndex={setIndex}
         index={index}
         images={images}
-        test={props.contentToDiplay[index].imgPathBG}
         >
         {Bubbles}
         {Buttons}
@@ -127,35 +141,26 @@ const ActivityDisplay = (props) => {
 }
 
 const ActivityTemplate = (props) => {
-  console.log(props)
+  // console.log("i")
   return(
     <>
-      <div className="container-glass-full"></div>
+    <div className="container-glass-full"></div>
         <>
         {props.children}
-        {/*<StorageImage
-          className="bg-img-activity"
-            storagePath={props.bg}
-            />
-        <StorageImage
-          storagePath={props.front}
-          className="frontImg-activity"
-          />*/}
-          <Img
+          <img
             className="bg-img-activity"
             src={props.bg}/>
-          <Img
+          <img
             className="frontImg-activity"
             src={props.front}/>
         </>
     </>
   )
 }
-
 const BtnTransparent = (props) => {
   return(
     <button
-      style={{transform:`translate(${props.x}px, ${props.y}px)`, height:`${props.h}px`,width:`${props.w}px`}}
+      style={{transform:`translate(${props.x}%, ${props.y}%)`, height:`${props.h}px`,width:`${props.w}px`}}
       onClick={() => props.setIndex(props.targetIndex)}
       className="btn-glass-intro" />
   )

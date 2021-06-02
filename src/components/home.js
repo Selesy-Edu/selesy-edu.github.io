@@ -99,8 +99,8 @@ const Home = (props) => {
             degree={registry.toLowerCase()}
           />
         {enterContent &&
-          <Container className={`canvas-fade-${!enterContent}`} style={{height:'100%'}} fluid>
-            <Container className="justify-content-center">
+          <Container className={`canvas-fade-${!enterContent}`} style={{height:'100%', overflow:'hidden'}} fluid>
+            <Container className="justify-content-center" style={{ overflow:'hidden'}} >
               <ActivityDisplay
                 index={index}
                 />
@@ -124,7 +124,7 @@ const Home = (props) => {
             </Container>
           </Container>
         }
-        <Container className={`home-canvas-container canvas-fade-${enterContent}`} style={{overflow:`${enterContent ? 'hidden' : ''}`}} fluid>
+        <Container className={`home-canvas-container canvas-fade-${enterContent}`} style={{overflow:`${enterContent ? 'hidden' : 'scroll'}`}} fluid>
           {props.userInfo.info.profileImage === false &&
             <div className="container-glass-full"></div>
           }

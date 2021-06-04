@@ -17,7 +17,26 @@ import image5 from '../assets/temp/casa-extraterrestre-triste-completa.png'
 import image6 from '../assets/temp/casa-extraterrestre-triste.png'
 import image7 from '../assets/temp/casa-extraterrestre-feliz.png'
 
+import audio1 from '../assets/audio/1.1.1-1.ogg'
+import audio2 from '../assets/audio/1.1.1-2.ogg'
+import audio3 from '../assets/audio/1.1.1-3.ogg'
+import audio4 from '../assets/audio/1.1.1-4.ogg'
+import audio5 from '../assets/audio/1.1.1-5.ogg'
+import audio6 from '../assets/audio/1.1.1-6.ogg'
+import audio7 from '../assets/audio/1.1.1-7.ogg'
+import audio8 from '../assets/audio/1.1.1-8.ogg'
+import audio9 from '../assets/audio/1.1.1-9.ogg'
+import audio10 from '../assets/audio/1.1.1-10.ogg'
+import audio11 from '../assets/audio/1.1.1-11.ogg'
+
 import Secuencer from '../animations/secuenciador.js'
+import AudioReader from './AudioReader'
+
+import Img from "react-cool-img"
+import { ReactSVG } from 'react-svg'
+import next from '../assets/images/icons/next.svg'
+import back from '../assets/images/icons/back.svg'
+import button from '../assets/images/icons/fondo.png'
 
 const ActivityDisplay = (props) => {
 
@@ -36,7 +55,6 @@ const ActivityDisplay = (props) => {
   useEffect(()=>{
     // if(imagesDone && loading){
       preloadImages([image0,image1,image2,image3,image4,image5,image6,image7])
-      console.log(0)
     // }
   },[])
 
@@ -70,10 +88,17 @@ const ActivityDisplay = (props) => {
   useEffect(()=>{
     let t = typeof props.contentToDiplay[index] !== 'undefined' ? props.contentToDiplay[index] : []
   })
-const setAction = (val) => {
-  return val < 100 ? setIndex(val) : console.log(val)
-}
 
+  const setAction = (val) => {
+    return val < 100 ? setIndex(val) : console.log(val)
+  }
+
+  const setIndexUp = () => {
+    setIndex(index + 1)
+  }
+  const setIndexDown = () => {
+    setIndex(index - 1)
+  }
 
   const preloadImages = async (srcArray) => {
     const promises = await srcArray.map((src)=> {
@@ -140,12 +165,18 @@ const setAction = (val) => {
             front={props.contentToDiplay[index].imgPath}
             setIndex={setIndex}
             index={index}
+            setIndexDown={setIndexDown}
+            setIndexUp={setIndexUp}
+            start={props.contentToDiplay['guide'].start}
+            end={props.contentToDiplay['guide'].end}
             >
             {Bubbles}
             {Buttons}
             {props.contentToDiplay[index].mainTextStatus &&
               <Text
                 mainText={props.contentToDiplay[index].mainText}
+                audio={mapAudioVariable(props.contentToDiplay[index].audio)}
+                offsets={[0,1,2,3,4]}
                 />
             }
             {props.contentToDiplay[index].appStatus &&
@@ -181,16 +212,36 @@ const ActivityTemplate = (props) => {
             className="frontImg-activity"
             src={mapVariable(props.front)}/>
         </>
+      {props.index >= props.start &&
+        <>
+        {props.index > props.start &&
+          <button
+            onClick={()=>props.setIndexDown()}
+            className="button-pages bt-back-activity">
+            <Img src={button} style={{width:'3rem'}}/>
+            <ReactSVG className="center-icons-tn" src={back}/>
+          </button>
+        }
+        {props.index < props.end &&
+          <button
+            onClick={()=>props.setIndexUp()}
+            className="button-pages bt-next-activity">
+            <Img src={button} style={{width:'3rem',display:'inline'}}/>
+            <ReactSVG className="center-icons-tn" src={next}/>
+          </button>
+        }
+        </>
+      }
     </>
   )
 }
-//style={{transform:`translate(${props.x}vw, ${props.y}vh)`, width:`${props.h}vw`,height:`${props.w}vh`}}
 //
-//style={{transform:`translate(15vw, -35vh)`}}
+//style={{transform:`translate(0vw, -23vh)`, width:`10vw`,height:`34vh`}}
+//style={{transform:`translate(5vw, -32vh)`}}
 const BtnTransparent = (props) => {
   return(
     <button
-      style={{transform:`translate(-20vw, -8vh)`, width:`6vw`,height:`18vh`}}
+      style={{transform:`translate(${props.x}vw, ${props.y}vh)`, width:`${props.w}vw`,height:`${props.h}vh`}}
       onClick={() => props.action(props.targetIndex)}
       className="btn-glass-intro" />
   )
@@ -206,9 +257,14 @@ const PopupInfo = (props) => {
 
 const Text = (props) => {
   return (
-    <Container className="container-mainText-activity">
-      <p className="p-mainText-activity">{props.mainText}</p>
-    </Container>
+    <div id="main-container-text" className="p-content-main">
+      {/*<p className="p-mainText-activity">{props.mainText}</p>*/}
+      <AudioReader
+        text={props.mainText}
+        offsets={props.offsets}
+        audio={props.audio}
+        />
+    </div>
   )
 }
 
@@ -243,8 +299,48 @@ const mapVariable = (text) => {
       case 6:
         return image6
         break;
-      case 2:
+      case 7:
         return image7
+        break;
+      default:
+        return
+    }
+}
+
+const mapAudioVariable = (text) => {
+    switch (text) {
+      case 1:
+        return audio1
+        break;
+      case 2:
+        return audio2
+        break;
+      case 3:
+        return audio3
+        break;
+      case 4:
+        return audio4
+        break;
+      case 5:
+        return audio5
+        break;
+      case 6:
+        return audio6
+        break;
+      case 7:
+        return audio7
+        break;
+      case 8:
+        return audio8
+        break;
+      case 9:
+        return audio9
+        break;
+      case 10:
+        return audio10
+        break;
+      case 0:
+        return audio11
         break;
       default:
         return

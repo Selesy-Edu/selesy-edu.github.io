@@ -40,7 +40,7 @@ const MainPanel = (props) => {
   }
 
   const returnHome = () => {
-    if(props.appActive || props.contentActive){
+    if(props.appActive || props.contentActive || props.enterContent){
       if(window.confirm('Puedes perder el progreso ¿deseas continuar?')){
         props.setIndex(-1)
         props.setAppActive(false)

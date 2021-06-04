@@ -128,16 +128,15 @@ const ContainerBack = (props) => {
 const Intro = (props) => {
   return(
     <>
-      <p className="p-content-main">
+      <div className="p-content-main">
         {props.nick}
-        <br />
           <TxtAlone
             text={'¡El mundo te necesita!'}
             offsets={[40.0,242.0,552.0,900.0,1200.0]}
             audio={props.audio}
             index={props.index}
           />
-      </p>
+      </div>
       <input
         onChange={e => props.setInputText(e.target.value)}
         className="input-content-enter"

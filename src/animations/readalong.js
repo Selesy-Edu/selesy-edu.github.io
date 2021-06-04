@@ -65,7 +65,7 @@ componentDidMount(){
         for(let i = 0; i < pText.length; i++){
           p[i].removeAttribute('style')
           if(currentTime >= Math.round(offsets[i]) && currentTime < Math.round(offsets[i+1])){
-            word = i*2;
+            word = i;
           }
         }
         p[word].style('color','#0000ff');

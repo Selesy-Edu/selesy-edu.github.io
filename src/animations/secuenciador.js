@@ -32,7 +32,7 @@ class Secuencer extends React.Component {
       let back
 
       sketch.setup = () => {
-        let cnv = sketch.createCanvas(914, 460)
+        let cnv = sketch.createCanvas(914, 448)
         cnv.parent('secuencer')
         cnv.style('border-radius','7rem')
         vol1 = sketch.createSlider(0, 255, 125)
@@ -95,23 +95,23 @@ class Secuencer extends React.Component {
           this.player8.howler.play()
         }
 
-        sketch.background(250,222,159,40)
+        sketch.background(250,222,159,80)
         sketch.stroke(255)
 
         sketch.push()
-        sketch.translate(100,100)
+        sketch.translate(100,98)
         Samp(sketch.color(107, 0,100),0,1,'tambor')
         sketch.pop()
         sketch.push()
-        sketch.translate(340,100)
+        sketch.translate(340,98)
         Samp(sketch.color(65, 72, 218),1,1,'agua')
         sketch.pop()
         sketch.push()
-        sketch.translate(580,100)
+        sketch.translate(580,98)
         Samp(sketch.color(65, 202, 218),2,1,'metal')
         sketch.pop()
         sketch.push()
-        sketch.translate(820,100)
+        sketch.translate(820,98)
         Samp(sketch.color(98, 218, 65),3,1,'cadena')
         sketch.pop()
         sketch.push()
@@ -130,7 +130,13 @@ class Secuencer extends React.Component {
         sketch.translate(820,350)
         Samp(sketch.color(176, 65, 218),7,1,'grito')
         sketch.pop()
+        sketch.fill(255,0,0)
+      }
 
+      const Clickable = (xP,xOffset, yP, yOffset) => {
+        sketch.rect(xP,yP,xOffset,yOffset)
+        if(sketch.mouseX > (xP) && sketch.mouseX < (xP)+xOffset && sketch.mouseY > (yP) && sketch.mouseY < (yP)+yOffset){
+        }
       }
 
       const Samp = (col,pos,tempo,audio) => {

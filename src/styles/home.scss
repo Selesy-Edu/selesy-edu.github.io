@@ -37,14 +37,14 @@
   height: 2.5rem;
   left: 50%;
   transform: translate(-50%,0);
-  z-index: 3000;
+  z-index: 4000;
   transition: bottom 0.25s;
   overflow: hidden;
 }
 
 .main-panel-submenu{
   position: fixed;
-  z-index: 3000;
+  z-index: 4000;
   background-color: #8ab6d5;
   left:50%;
   width: 60px;
@@ -57,7 +57,7 @@
 
 #p-main-place{
   position: fixed;
-  z-index: 4000;
+  z-index: 5000;
   left:50%;
   bottom: 0%;
   font-size: 1.8rem;
@@ -97,7 +97,7 @@
   left: 50%;
   transform: translate(-50%,0%);
   transition: opacity 0.25s;
-  z-index: 1000;
+  z-index: 4000;
 }
 
 #main-panel-image{

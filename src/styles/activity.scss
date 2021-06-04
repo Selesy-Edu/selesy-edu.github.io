@@ -28,7 +28,7 @@
     @include centerAnchorFixed;
     z-index: 10000;
     border: none;
-    background: rgba( 255, 255, 255, 0 );
+    background: rgba( 255, 255, 255, 1 );
 }
 
 .btn-glass-intro:hover{
@@ -40,7 +40,7 @@
   @include centerAnchorFixed;
   z-index: 10000;
   font-size: 2rem;
-  width: 16rem;
+  width: 15rem;
   background-color: red;
   font-family: "Learners";
   border-radius: 2rem;
@@ -73,10 +73,14 @@
   position: fixed;
   z-index: 10000;
   top: 4rem;
+  text-align: center;
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;
+  font-family: 'Learners';
+  font-size:3rem;
+  height: 20rem;
 }
 
 .container-btn-guide-activity{
@@ -84,5 +88,12 @@
   position:fixed;
   left: 50%;
   top:47%;
-  z-index:8000;
+  z-index:3000;
+}
+
+.bt-back-activity{
+  transform: translate(-40.6vw,16vh);
+}
+.bt-next-activity{
+  transform: translate(38vw,16vh);
 }

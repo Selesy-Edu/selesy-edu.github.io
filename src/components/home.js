@@ -112,11 +112,14 @@ const Home = (props) => {
                   button1Action={() => setContentActive(appActive ? null : !contentActive)}
                   button2Action={() => setAppActive()}
                   setAppActive={setAppActive}
+                  setContentActive={setContentActive}
+                  setEnterContent={setEnterContent}
                   bt1State={props.userInfo.info.profileImage}
                   bt2State={props.userInfo.info.profileImage}
                   btProfileState={props.userInfo.info.profileImage}
                   appActive={appActive}
-                  setEnterContent={setEnterContent}
+                  contentActive={contentActive}
+                  enterContent={enterContent}
                   setIndex={setIndex}
                   index={index}
                   place={place}

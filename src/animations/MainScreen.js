@@ -163,7 +163,7 @@ class MainScreen extends React.Component {
 
       sketch.draw = () => {
         this.setState({current: typeof this.props.userInfo.progress !== 'undefined' ? this.props.userInfo.progress.current : 0 })
-        
+
         this.setState({commands:parser(this.props.commands)})
         tPosY = -sketch.map(this.state.commands[0]%91,0,90,0,height/2) + sketch.map(this.state.commands[1]%91,0,90,0,height/2) + (height/2)
         tPosX = -sketch.map(this.state.commands[2]%181,0,180,0,width/2) + sketch.map(this.state.commands[3]%181,0,180,0,width/2) + (width/2)
@@ -171,14 +171,14 @@ class MainScreen extends React.Component {
 
         sketch.image(background,width/2,height/2,width,height)
         sketch.push()
-        let time = sketch.timeGet()
-        this.props.setTime(time)
-        if(time === 'day'){
-          sketch.tint(255,255,255,255)
-        }
-        if(time === 'night'){
-          sketch.tint(10,10,10,255)
-        }
+        // let time = sketch.timeGet()
+        // this.props.setTime(time)
+        // if(time === 'day'){
+        //   sketch.tint(255,255,255,255)
+        // }
+        // if(time === 'night'){
+        //   sketch.tint(10,10,10,255)
+        // }
         sketch.image(map,(width/2)+22,(height/2)-32,width+484,height+140)
         sketch.pop()
         sketch.push()

@@ -8,7 +8,6 @@ class Readalong extends React.Component {
 
 state = {
   text: this.props.text,
-  offsets: this.props.offsets,
   done: true
 };
 
@@ -28,7 +27,6 @@ componentDidMount(){
         a.remove()
       })
       p = []
-      offsets = this.state.offsets
       pText = this.state.text.split(' ')
       for(let i = 0; i < pText.length; i++){
         let t = sketch.createSpan(pText[i])
@@ -47,6 +45,7 @@ componentDidMount(){
     sketch.setup = () => {
       divMain = document.getElementById('main-container-text')
       sketch.noCanvas()
+      sketch.frameRate(120)
     };
 
     sketch.draw = () => {
@@ -54,20 +53,21 @@ componentDidMount(){
         sketch.update()
       }
       if(!this.player.howler.playing()){
+        word = 0
         this.props.setPlay(false)
         p.map((word)=>{
           word.removeAttribute('style')
         })
-        p[pText.length].removeAttribute('style')
       }
       if(this.player.howler.playing()){
-        let currentTime = this.player.howler.seek() * 1000
+        let currentTime = Math.round(this.player.howler.seek() * 1000)
         for(let i = 0; i < pText.length; i++){
           p[i].removeAttribute('style')
-          if(currentTime >= Math.round(offsets[i]) && currentTime < Math.round(offsets[i+1])){
-            word = i;
+          if(currentTime >= Math.round(this.props.offsets[i]) && currentTime < Math.round(this.props.offsets[i+1])){
+            word = i*2;
           }
         }
+        p[pText.length-1].removeAttribute('style')
         p[word].style('color','#0000ff');
         p[word].style('text-decoration','underline');
         p[word].style('background-color','lightblue');

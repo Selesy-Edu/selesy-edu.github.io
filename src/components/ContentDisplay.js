@@ -99,8 +99,8 @@ const ContentDisplay = (props) => {
           <ContainerBack>
             <TxtAlone
               text={props.contentToDiplay[index].mainText}
-              offsets={[20.0,120.0,230.0,1000.0,1150.0,1230.0,2000.0,2100.0,2180.0,3240.0]}
-              audio={audio2}
+              offsets={parseOffsets(props.contentToDiplay[index].offsets)}
+              audio={mapVarAudio(props.contentToDiplay[index].audio)}
               index={index}
               setIndexUp={setIndexUp}
               setIndexDown={setIndexDown}
@@ -132,7 +132,7 @@ const Intro = (props) => {
         {props.nick}
           <TxtAlone
             text={'¡El mundo te necesita!'}
-            offsets={[40.0,242.0,552.0,900.0,1200.0]}
+            offsets={[40.0,242.0,900.0,1200.0,1220.0,1400.0]}
             audio={props.audio}
             index={props.index}
           />
@@ -144,8 +144,9 @@ const Intro = (props) => {
     </>
   )
 }
-
+//
 const TxtAlone = (props) => {
+  console.log(props.offsets)
   return(
     <>
     <div className="p-content-main" id="main-container-text">
@@ -176,6 +177,34 @@ const TxtAlone = (props) => {
   )
 }
 
+const parseOffsets = (ofs) => {
+  let array = []
+  let t = ofs.split(',')
+  t.map((o)=>{
+    array.push(parseFloat(o))
+  })
+  return array
+}
+
+const mapVarAudio = (val) => {
+  switch (val) {
+    case 1:
+      return audio1
+      break;
+    case 2:
+      return audio2
+      break;
+    case 3:
+      return audio3
+      break;
+    case 4:
+      return audio4
+      break;
+    default:
+      return
+
+  }
+}
 
 const mapStateToProps = (state) => {
   return {

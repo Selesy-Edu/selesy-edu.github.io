@@ -169,6 +169,7 @@ const ActivityDisplay = (props) => {
             setIndexUp={setIndexUp}
             start={props.contentToDiplay['guide'].start}
             end={props.contentToDiplay['guide'].end}
+            hideGuide={props.contentToDiplay[index].hideGuide}
             >
             {Bubbles}
             {Buttons}
@@ -176,7 +177,7 @@ const ActivityDisplay = (props) => {
               <Text
                 mainText={props.contentToDiplay[index].mainText}
                 audio={mapAudioVariable(props.contentToDiplay[index].audio)}
-                offsets={[0,1,2,3,4]}
+                offsets={parseOffsets(props.contentToDiplay[index].offsets)}
                 />
             }
             {props.contentToDiplay[index].appStatus &&
@@ -212,7 +213,7 @@ const ActivityTemplate = (props) => {
             className="frontImg-activity"
             src={mapVariable(props.front)}/>
         </>
-      {props.index >= props.start &&
+      {props.index >= props.start && !props.hideGuide &&
         <>
         {props.index > props.start &&
           <button
@@ -236,7 +237,7 @@ const ActivityTemplate = (props) => {
   )
 }
 //
-//style={{transform:`translate(0vw, -23vh)`, width:`10vw`,height:`34vh`}}
+//style={{transform:`translate(27vw, 4vh)`, width:`8vw`,height:`14vh`}}
 //style={{transform:`translate(5vw, -32vh)`}}
 const BtnTransparent = (props) => {
   return(
@@ -268,6 +269,14 @@ const Text = (props) => {
   )
 }
 
+const parseOffsets = (ofs) => {
+  let array = []
+  let t = ofs.split(',')
+  t.map((o)=>{
+    array.push(parseFloat(o))
+  })
+  return array
+}
 
 const mapStateToProps = (state) => {
   return {

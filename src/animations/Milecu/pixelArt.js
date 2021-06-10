@@ -6,7 +6,7 @@ import button from '../../assets/images/icons/fondo.png'
 
 import ColorPicker from './colorPicker'
 
-import { IconContext } from "react-icons";
+import { IconContext } from "react-icons"
 import { FaEraser } from "react-icons/fa";
 import { FaPencilAlt } from "react-icons/fa";
 import Container from 'react-bootstrap/Container'

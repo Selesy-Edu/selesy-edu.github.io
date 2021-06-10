@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import p5 from 'p5';
 import ReactHowler from 'react-howler'
 
@@ -36,7 +36,6 @@ import {shuffle} from '../helpers.js'
 import '../styles/secuenciador.scss'
 
 let s = undefined;
-//secuenciador FULL
 
 class Secuencer extends React.Component {
 
@@ -200,30 +199,6 @@ class Secuencer extends React.Component {
             y[7] = 1*sc+sketch.sin(sketch.radians(sketch.millis())*speed)*68*sc
           }
         }
-        // if(y[0] > -4 && y[0] < 4 && x[0] > 0){
-        //   this.player1.howler.play()
-        // }
-        // if(y[1] > -4 && y[1] < 4 && x[1] > 0){
-        //   this.player2.howler.play()
-        // }
-        // if(y[2] > -4 && y[2] < 4 && x[2] > 0){
-        //   this.player3.howler.play()
-        // }
-        // if(y[3] > -4 && y[3] < 4 && x[3] > 0){
-        //   this.player4.howler.play()
-        // }
-        // if(y[4] > -4 && y[4] < 4 && x[4] > 0){
-        //   this.player5.howler.play()
-        // }
-        // if(y[5] > -4 && y[5] < 4 && x[5] > 0){
-        //   this.player6.howler.play()
-        // }
-        // if(y[6] > -4 && y[6] < 4 && x[6] > 0){
-        //   this.player7.howler.play()
-        // }
-        // if(y[7] > -4 && y[7] < 4 && x[7] > 0){
-        //   this.player8.howler.play()
-        // }
 
         sketch.background(255,255,255,80)
         sketch.stroke(255)
@@ -347,13 +322,6 @@ class Secuencer extends React.Component {
   render(){
     return(
       <>
-      <Checker
-        a={this.state.shuffled}
-        b={this.state.randomGrid}
-        />
-      <RandomGrid
-        audio={this.state.randomGrid}
-        />
       <MenuGrid
           x={this.state.x}
           y={this.state.y}
@@ -550,86 +518,6 @@ const MenuGrid = (props) =>{
         </button>
       </div>
     </div>
-  )
-}
-
-const RandomGrid = (props) => {
-  const [p0, setP0] = useState(false)
-  const [p1, setP1] = useState(false)
-  const [p2, setP2] = useState(false)
-  const [p3, setP3] = useState(false)
-  const [p4, setP4] = useState(false)
-  const [p5, setP5] = useState(false)
-  const [p6, setP6] = useState(false)
-  const [p7, setP7] = useState(false)
-
-  return(
-    <div className="randomGrid-container">
-      <div style={{display:'block'}}>
-        <button onClick={()=> setP0(true)} className="randomGrid-btn"></button>
-        <button onClick={()=> setP1(true)} className="randomGrid-btn"></button>
-        <button onClick={()=> setP2(true)} className="randomGrid-btn"></button>
-        <button onClick={()=> setP3(true)} className="randomGrid-btn"></button>
-      </div>
-      <div style={{display:'block'}}>
-        <button onClick={()=> setP4(true)} className="randomGrid-btn"></button>
-        <button onClick={()=> setP5(true)} className="randomGrid-btn"></button>
-        <button onClick={()=> setP6(true)} onClick={()=> setP0(true)} className="randomGrid-btn"></button>
-        <button onClick={()=> setP7(true)} className="randomGrid-btn"></button>
-      </div>
-      <ReactHowler onEnd={()=> setP0(false)} playing={p0} src={mapAudioVariable(props.audio[0])}/>
-      <ReactHowler onEnd={()=> setP1(false)} playing={p1} src={mapAudioVariable(props.audio[1])}/>
-      <ReactHowler onEnd={()=> setP2(false)} playing={p2} src={mapAudioVariable(props.audio[2])}/>
-      <ReactHowler onEnd={()=> setP3(false)} playing={p3} src={mapAudioVariable(props.audio[3])}/>
-      <ReactHowler onEnd={()=> setP4(false)} playing={p4} src={mapAudioVariable(props.audio[4])}/>
-      <ReactHowler onEnd={()=> setP5(false)} playing={p5} src={mapAudioVariable(props.audio[5])}/>
-      <ReactHowler onEnd={()=> setP6(false)} playing={p6} src={mapAudioVariable(props.audio[6])}/>
-      <ReactHowler onEnd={()=> setP7(false)} playing={p7} src={mapAudioVariable(props.audio[7])}/>
-    </div>
-  )
-}
-
-const Checker = (props) => {
- const [done, setDone] = useState(false)
- const [missing, setMissing] = useState(8)
-
- useEffect(()=>{
-   check()
- },[])
-
-  const check = () => {
-    let count = 0
-    for (let i = 0; i <= props.a.length; i++){
-      if(props.a[i] === props.b[i]){
-        count++
-      }
-    }
-    if(count === 8){
-      setDone(true)
-    }
-    setMissing(props.a.length-count)
-  }
-
-  return(
-    <>
-      <span
-        onClick={()=>check()}
-        style={{display:'inline',position:'fixed', zIndex:'15000',bottom:'28px', right:'120px'}}>
-        <Img style={{width:'40px', cursor:'pointer'}} src={btnBG}/>
-          <IconContext.Provider
-            value={{ color: 'white', size: '26px' }}
-          >
-          <FaCheck
-            style={{display:'inline',transform:'translate(-33px,0px)', cursor:'pointer'}}/>
-          </ IconContext.Provider>
-      </span>
-    {done &&
-      <p style={{position:'fixed',bottom:'0px',zIndex:'15000', fontFamily:'Learners', fontSize:'2.5rem', transform:'translate(0px,30px)'}}>¡Lo hiciste!</p>
-    }
-    {!done &&
-      <p style={{position:'fixed',bottom:'0px',zIndex:'15000', fontFamily:'Learners', fontSize:'2.5rem', transform:'translate(0px,30px)'}}>{`${missing} por corregir`}</p>
-    }
-    </>
   )
 }
 

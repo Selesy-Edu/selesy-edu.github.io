@@ -1,7 +1,7 @@
-import React, {useEffect, useState}  from 'react';
+import React, {useEffect, useState}  from 'react'
 import {connect} from 'react-redux'
 
-import Img from "react-cool-img";
+import Img from "react-cool-img"
 import Container from 'react-bootstrap/Container'
 import { ReactSVG } from 'react-svg'
 import { ReactFitty } from "react-fitty";

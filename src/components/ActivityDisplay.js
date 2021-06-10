@@ -2,6 +2,7 @@ import React, {Suspense, useEffect, useState}  from 'react';
 import {connect} from 'react-redux'
 import { useFirebaseApp, StorageImage, useStorage } from 'reactfire'
 import PreCacheImg from 'react-precache-img'
+import ReactHowler from 'react-howler'
 
 import Container from 'react-bootstrap/Container'
 import Spinner from 'react-bootstrap/Spinner'
@@ -29,7 +30,18 @@ import audio9 from '../assets/audio/1.1.1-9.ogg'
 import audio10 from '../assets/audio/1.1.1-10.ogg'
 import audio11 from '../assets/audio/1.1.1-11.ogg'
 
+import a1 from '../assets/audio/sq/1.ogg'
+import a2 from '../assets/audio/sq/2.ogg'
+import a3 from '../assets/audio/sq/3.ogg'
+import a4 from '../assets/audio/sq/4.ogg'
+import a5 from '../assets/audio/sq/5.ogg'
+import a6 from '../assets/audio/sq/6.ogg'
+import a7 from '../assets/audio/sq/7.ogg'
+import a8 from '../assets/audio/sq/8.ogg'
+
 import Secuencer from '../animations/secuenciador.js'
+import SecuencerOne from '../animations/secuenciadorOne.js'
+import SecuencerTwo from '../animations/secuenciadorTwo.js'
 import AudioReader from './AudioReader'
 
 import Img from "react-cool-img"
@@ -44,7 +56,8 @@ const ActivityDisplay = (props) => {
   const [index, setIndex] = useState(0)
   const [done, setDone] = useState(false)
   const [guideMap, setGuideMap] = useState([])
-
+  const [playAudio, setPlayAudio] = useState(false)
+  const [toPlay, setToPlay] = useState(100)
 
   const [images,setImages] = useState([])
   const [imagesDone,setImagesDone] = useState(false)
@@ -89,8 +102,14 @@ const ActivityDisplay = (props) => {
     let t = typeof props.contentToDiplay[index] !== 'undefined' ? props.contentToDiplay[index] : []
   })
 
+  const previewSound = (val) => {
+    setPlayAudio(true)
+    setToPlay(val)
+    console.log(val)
+  }
+
   const setAction = (val) => {
-    return val < 100 ? setIndex(val) : console.log(val)
+    return val < 100 ? setIndex(val) : previewSound(val)
   }
 
   const setIndexUp = () => {
@@ -159,6 +178,11 @@ const ActivityDisplay = (props) => {
     {done &&
       <>
       <Suspense fallback={<Spinner animation="border" variant="primary" />}>
+        <ReactHowler
+          onEnd={()=>setPlayAudio(false)}
+          playing={playAudio}
+          src={mapSoundVariable(toPlay)}
+        />
           <ActivityTemplate
             content={props.contentToDiplay[index]}
             bg={props.contentToDiplay[index].imgPathBG}
@@ -182,7 +206,15 @@ const ActivityDisplay = (props) => {
             }
             {props.contentToDiplay[index].appStatus &&
               <Container className="justify-content-center" style={{display:'flex'}}>
-                <Secuencer/>
+                {props.contentToDiplay[index].app === 1 &&
+                  <SecuencerOne/>
+                }
+                {props.contentToDiplay[index].app === 2 &&
+                  <SecuencerTwo/>
+                }
+                {props.contentToDiplay[index].app === 3 &&
+                  <Secuencer/>
+                }
               </Container>
             }
             {index >= props.contentToDiplay['guide'].start &&
@@ -237,7 +269,7 @@ const ActivityTemplate = (props) => {
   )
 }
 //
-//style={{transform:`translate(27vw, 4vh)`, width:`8vw`,height:`14vh`}}
+//style={{transform:`translate(15vw, -2vh)`, width:`1.3vw`,height:`14vh`}}
 //style={{transform:`translate(5vw, -32vh)`}}
 const BtnTransparent = (props) => {
   return(
@@ -350,6 +382,40 @@ const mapAudioVariable = (text) => {
         break;
       case 0:
         return audio11
+        break;
+      default:
+        return
+    }
+}
+
+const mapSoundVariable = (text) => {
+    switch (text) {
+      case 100:
+        return a1
+        break;
+      case 101:
+        return a6
+        break;
+      case 102:
+        return a3
+        break;
+      case 103:
+        return a3
+        break;
+      case 104:
+        return a5
+        break;
+      case 105:
+        return a2
+        break;
+      case 106:
+        return a7
+        break;
+      case 107:
+        return a8
+        break;
+      case 108:
+        return a4
         break;
       default:
         return

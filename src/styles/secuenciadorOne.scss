@@ -1,0 +1,59 @@
+@import "mixins";
+
+.music-app-panel{
+  @include centerDownAnchorFixed;
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  height: 70px;
+  z-index: 12000;
+  transform: translate(-90px,-160px);/*-240x*/
+}
+
+.seq-main-controls{
+  z-index: 15000;
+  width: 66px;
+}
+
+.seq-main-controls:hover{
+  cursor: pointer;
+}
+
+.play-btn{
+  filter: hue-rotate(90deg);
+}
+
+.random-btn{
+  filter: hue-rotate(145deg);
+}
+
+.menuGrid-container{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20000;
+  width: 200px;
+  height: 100px;
+}
+
+.randomGrid-container{
+  position: fixed;
+  z-index: 20000;
+  right:200px;
+  bottom: 0;
+  width: 230px;
+  height: 200px;
+  transform: translate(0,100px);
+}
+
+.randomGrid-btn{
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 150px;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow:  1px 1px 8px #c7c7c7,
+               -1px -1px 8px #f9f9f9;
+}

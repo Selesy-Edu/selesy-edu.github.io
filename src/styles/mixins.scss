@@ -57,6 +57,11 @@ $desktop-width: 1024px;
   left: 50%;
   top: 50%;
 }
+@mixin centerDownAnchorFixed {
+  position: fixed;
+  left: 50%;
+  bottom: 0%;
+}
 
 @mixin glass {
   background: rgba( 255, 255, 255, 0.15 );
